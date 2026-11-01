@@ -270,7 +270,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
   }, [guestMenuOpen, editingGuestName]);
   const saveGuestName = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const firstName = editedName.trim().split(/\\s+/)[0];
+    const firstName = editedName.trim().split(/\s+/)[0];
     if (!firstName) return;
     sessionStorage.setItem("saer_guest_name", firstName);
     window.dispatchEvent(new Event("saer-guest-name"));
