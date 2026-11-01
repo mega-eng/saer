@@ -1,6 +1,6 @@
 {
-  "file_count_in_commit": 289,
-  "bytes_without_manifest": 38050927,
+  "file_count_in_commit": 290,
+  "bytes_without_manifest": 38076131,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -25,8 +25,8 @@
     },
     {
       "path": "DELIVERY.md",
-      "bytes": 5776,
-      "sha256": "d19ff96ca9bd642ded098aab2f18a8c20254a67197a6d4e87e80ea835160e8e7"
+      "bytes": 15719,
+      "sha256": "58e0b915aa54775b59a1cbb1d53974d20877de4dc760d6e994d39fe046cba0bd"
     },
     {
       "path": "ML_SPEC.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 14158,
-      "sha256": "b0b446807bced13acc2a06e6b0dfab7c769305cb62694dda1977ccae5c814d89"
+      "bytes": 19205,
+      "sha256": "c648a4417a5888305e9cd2b75f9739dcaca6ce8cf1dc9a99ad078e5ade36abc5"
     },
     {
       "path": "README.md",
@@ -137,6 +137,11 @@
       "path": "docs/PHASE4_VERIFICATION.json",
       "bytes": 9080,
       "sha256": "d42c5fe2b1d6aa8ca058e718314d530ffe68d074452c9c426989094ac93a2363"
+    },
+    {
+      "path": "docs/PHASE5_VERIFICATION.json",
+      "bytes": 10214,
+      "sha256": "27c35db4daeee5086e7c777b9ceac424af67e943320639cc194720343907a978"
     },
     {
       "path": "docs/PUBLIC_ENCODERS.json",
