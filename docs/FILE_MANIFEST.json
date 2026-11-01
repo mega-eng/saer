@@ -1,6 +1,6 @@
 {
-  "file_count_in_commit": 295,
-  "bytes_without_manifest": 38120202,
+  "file_count_in_commit": 300,
+  "bytes_without_manifest": 38685732,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -35,13 +35,13 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 30239,
-      "sha256": "d71997099e8a705508f33f6e3174bb14522f0e3aded92f6d698c9964efb3b1fe"
+      "bytes": 34663,
+      "sha256": "c21c7c7122deeab23f019de828aa57a11322fb3064bb94a7915de377cceb4c04"
     },
     {
       "path": "README.md",
-      "bytes": 12226,
-      "sha256": "571f76e3403b75a667f334705aaf7608cba7be69c425c45743cc0d1b8104a378"
+      "bytes": 11648,
+      "sha256": "233f3ae0b58003eb5f1c7df14780a27114dd54097c0d086790329d2e8ddd3230"
     },
     {
       "path": "REQ.md",
@@ -179,9 +179,34 @@
       "sha256": "eec36fa4f15bef59cd96d35713af6b9da2da40458fa23aa5fb74c30f24e5c30a"
     },
     {
+      "path": "docs/SETUP.md",
+      "bytes": 17414,
+      "sha256": "7561fc801aa5070cb9be1807235cdfa39b2a3f3f115c51b39d19ca336e7edd8b"
+    },
+    {
       "path": "docs/UNIFICATION_VERIFICATION.json",
       "bytes": 9589,
       "sha256": "05f8c13ff346cd50c2f1870ff9878050c08333038008ba271da8685a595c7969"
+    },
+    {
+      "path": "docs/assets/README.md",
+      "bytes": 1265,
+      "sha256": "712fd4708db727b19b69613140041290ee0250c65e9d2aa73eb5e19a9c5fb86d"
+    },
+    {
+      "path": "docs/assets/home-screen.jpg",
+      "bytes": 166534,
+      "sha256": "8dce9fa179b57dae596fd26a2daf4d645f571525e3f615bc07286cb8c846c887"
+    },
+    {
+      "path": "docs/assets/listings-screen.jpg",
+      "bytes": 122412,
+      "sha256": "980514ec50245c97a3a6425cdda4f358349c4f68db0840571e12c7659c8d04d7"
+    },
+    {
+      "path": "docs/assets/market-screen.jpg",
+      "bytes": 254059,
+      "sha256": "e1b3837726ca07109b52e0140785eb60a8555bcc881260bf543f5c27ad6e9b72"
     },
     {
       "path": "docs/runtime-assets.json",
