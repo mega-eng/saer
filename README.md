@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/Runtime-Python%203.12-143B63?style=flat-square" alt="Model runtime: Python 3.12">
     <img src="https://img.shields.io/badge/Data-Historical-E5AB36?style=flat-square" alt="Data: historical advertisements">
   </p>
-  <h3><a href="https://saer-rmsavg637.pages.dev/">🌐 Explore the Live Demo</a></h3>
+  <h3><a href="https://saer-rmsavg637.pages.dev/">Explore the Live Demo</a></h3>
   <p><a href="#features">Features</a> · <a href="#quick-start">Quick Start</a> · <a href="#documentation">Documentation</a></p>
 </div>
 
@@ -35,7 +35,7 @@ Saer brings vehicle exploration and price estimation into one Arabic, right-to-l
 
 <a name="features"></a>
 
-## ✨ Features
+## Features
 
 | Feature | What you can do | Data / runtime |
 |---|---|---|
@@ -48,7 +48,7 @@ Saer brings vehicle exploration and price estimation into one Arabic, right-to-l
 
 **Two photo paths, two different purposes.** Vehicle identification suggests a make and model for the specification-based flow. The user confirms that suggestion and completes fields such as year and mileage before pricing. Direct image-to-price estimation is a separate model; it does not infer mileage or mechanical condition.
 
-## 🧠 Models & data
+## Models & data
 
 The table below describes the **saved runtime artifacts**, rather than the alternative architectures proposed in early planning documents.
 
@@ -93,7 +93,7 @@ Cloudflare serves the static demo; it does **not** run Python or the models. Dem
 
 <a name="quick-start"></a>
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Explore the interface locally
 
@@ -133,6 +133,12 @@ The first encoder restore needs internet access and disk space. After restoratio
 
 **[Full setup guide →](docs/SETUP.md)** includes environment checks, exact CPU versions, REST startup, configuration, fresh-result verification, build commands, and backup restoration. The tested platform is Windows x64 with 16 GB RAM; other platforms and GPU configurations have not been verified with these locks.
 
+## Team
+
+- ريان القحطاني
+- محمد ال حمود
+- عبد الرحمن الاسمري
+
 ## Repository guide
 
 | Path | Purpose |
@@ -146,7 +152,7 @@ The first encoder restore needs internet access and disk space. After restoratio
 
 <a name="documentation"></a>
 
-## 📚 Documentation
+## Documentation
 
 | Start here | Details |
 |---|---|
