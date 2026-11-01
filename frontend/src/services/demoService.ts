@@ -22,11 +22,18 @@ let connectedApiUrl = "";
 let clientPromise: Promise<Client> | undefined;
 
 async function readJson<T>(name: string): Promise<T> {
-  const response = await fetch(`/demo/${name}.json`);
-  if (!response.ok) throw new Error("تعذر تحميل بيانات العرض التجريبي.");
-  return response.json() as Promise<T>;
+  try {
+    const response = await fetch(`/demo/${name}.json`);
+    if (!response.ok) throw new Error();
+    return await response.json() as T;
+  } catch {
+    throw new Error("تعذر تحميل بيانات العرض التجريبي.");
+  }
 }
-const allListings = () => listingsCache ??= readJson<DemoListings>("listings");
+const allListings = () => listingsCache ??= readJson<DemoListings>("listings").catch(error => {
+  listingsCache = undefined;
+  throw error;
+});
 const normalize = (value: unknown) => String(value ?? "").trim().toLocaleLowerCase();
 
 function matches(row: RawListing, filters: Filters | MarketFilters = {}) {
