@@ -216,5 +216,40 @@
     "base_sha": "ab664a729d298f8738f95c660bda54a129170ca0",
     "head_sha": "faea119725db8d87883803f3cf26280ddd641715"
   },
-  "cleanup_policy": "Delete only release/committee-delivery and fix/frontend-layout after remote main ancestry and ZIP verification; preserve master and original worktree files"
+  "cleanup_policy": "Delete only release/committee-delivery and fix/frontend-layout after remote main ancestry and ZIP verification; preserve master and original worktree files",
+  "main_remote_files_verified_before_cleanup": {
+    "commit": "945d33c7c55aa8dcf858973e2464e175048f66f9",
+    "local_files": 295,
+    "github_files": 295,
+    "blob_mismatches": 0,
+    "truncated": false
+  },
+  "branch_cleanup": {
+    "verified_remote_main_before_cleanup": "945d33c7c55aa8dcf858973e2464e175048f66f9",
+    "source_branch_heads": {
+      "release/committee-delivery": "c586c8caab695f688bb898612ab538ad85c581e6",
+      "fix/frontend-layout": "faea119725db8d87883803f3cf26280ddd641715"
+    },
+    "source_commits_missing_from_main": {
+      "release/committee-delivery": 0,
+      "fix/frontend-layout": 0
+    },
+    "pre_cleanup_zip": "C:\\car_handoff\\delivery_backups\\saer-main-verification-20261102.zip",
+    "pre_cleanup_zip_sha256": "ccd9a20b5e8b9eb376ff972c3bfab2c5815d79597600d13d0198e97cfc270add",
+    "original_dirty_master_worktree_unchanged": true,
+    "deleted_local_and_remote": [
+      "release/committee-delivery",
+      "fix/frontend-layout"
+    ],
+    "retained_local_branches": [
+      "main",
+      "master"
+    ],
+    "remaining_remote_refs": [
+      "945d33c7c55aa8dcf858973e2464e175048f66f9\trefs/heads/main"
+    ],
+    "original_ui_worktree_preserved_detached_at": "faea119725db8d87883803f3cf26280ddd641715"
+  },
+  "final_archive_path": "C:/car_handoff/delivery_backups/saer-main-delivery-20261102.zip",
+  "final_archive_version": "Generated from the final clean main documentation commit; exact SHA in VERSION.txt and ZIP comment, archive SHA-256 in external sidecar"
 }

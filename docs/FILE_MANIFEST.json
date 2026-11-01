@@ -1,6 +1,6 @@
 {
   "file_count_in_commit": 295,
-  "bytes_without_manifest": 38113890,
+  "bytes_without_manifest": 38120202,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -25,8 +25,8 @@
     },
     {
       "path": "DELIVERY.md",
-      "bytes": 19486,
-      "sha256": "72d5502344de5ec951dd7038da2cf6a53f22021ac57be8da5ba32b42d2695c1e"
+      "bytes": 20978,
+      "sha256": "a80d8aa4e88f0fd6bc855aae6cad796c703b66f2703a4870c705921258efa7e4"
     },
     {
       "path": "ML_SPEC.md",
@@ -35,13 +35,13 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 27108,
-      "sha256": "034813d5db79665e6da967da7f723c1de05a67598e5ff8613be7214e6a4e16fe"
+      "bytes": 30239,
+      "sha256": "d71997099e8a705508f33f6e3174bb14522f0e3aded92f6d698c9964efb3b1fe"
     },
     {
       "path": "README.md",
-      "bytes": 12045,
-      "sha256": "c8e19bfc1188c7ac9d66470bb61ef678114f8c6176980e30819939a8a65b447a"
+      "bytes": 12226,
+      "sha256": "571f76e3403b75a667f334705aaf7608cba7be69c425c45743cc0d1b8104a378"
     },
     {
       "path": "REQ.md",
@@ -180,8 +180,8 @@
     },
     {
       "path": "docs/UNIFICATION_VERIFICATION.json",
-      "bytes": 8081,
-      "sha256": "955ea62d9c5d64df7dfd709ebf251784652156f9f840a961e3357c2ded02c9ce"
+      "bytes": 9589,
+      "sha256": "05f8c13ff346cd50c2f1870ff9878050c08333038008ba271da8685a595c7969"
     },
     {
       "path": "docs/runtime-assets.json",
