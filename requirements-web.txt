@@ -7,5 +7,7 @@ SQLAlchemy==2.1.6
 python-multipart==0.0.32
 transformers==4.45.2
 safetensors==0.8.0
-pandas==3.1.0
+pandas==2.3.3
 opencv-python-headless==4.14.0.94
+
+huggingface_hub==0.36.2
