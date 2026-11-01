@@ -97,6 +97,8 @@ function Frame({ page, children }: { page: Page; children: ReactNode }) {
     return () => obs.disconnect();
   }, [size.width]);
   return (
+    <>
+    <div className="supplemental-nav"><Navbar page={page} overlay /></div>
     <div
       ref={host}
       className="frame-host"
@@ -121,6 +123,7 @@ function Frame({ page, children }: { page: Page; children: ReactNode }) {
         {children}
       </main>
     </div>
+    </>
   );
 }
 function GlassCard({
@@ -292,7 +295,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
   const currentPath = location.pathname;
   const frameHeader = !home && !overlay && page !== "market" && page !== "browse";
   const headerStyle: CSSProperties | undefined = overlay ? {
-    left: "16px", top: "14px", width: "calc(100vw - 32px)", height: "80px",
+    position: "relative", transform: "none",
   } : frameHeader ? {
     left: `${16 / viewportScale}px`, top: `${14 / viewportScale}px`,
     width: `${window.innerWidth - 32}px`, height: "80px",
@@ -441,7 +444,6 @@ function Sell({
 }) {
   return (
     <Frame page="sell">
-      <Navbar page="sell" />
       <StaticArt
         page="sell"
         id="heading"
@@ -706,7 +708,6 @@ function Details({ preview, manual, imageFile, meta, pricePairs, onReplacePhoto 
     }));
   return (
     <Frame page="details">
-      <Navbar page="details" />
       <StaticArt
         page="details"
         id="heading"
@@ -942,7 +943,6 @@ function Budget({ meta }: { meta: DatasetMeta | null }) {
   return (
     <Frame page="budget">
       <Feedback text={message} close={()=>setMessage("")}/>
-      <Navbar page="budget" />
       <StaticArt
         page="budget"
         id="heading"
@@ -1119,7 +1119,6 @@ function Compare() {
   ];
   return (
     <Frame page="compare">
-      <Navbar page="compare" />
       <StaticArt
         page="compare"
         id="heading"
