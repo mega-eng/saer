@@ -560,8 +560,8 @@ function Estimate() {
   return (
     <div className="hamoud-app">
     <nav className="hamoud-site-nav" dir="rtl" aria-label={`التنقل في ${APP_NAME}`}>
-      <a className="hamoud-brand-link" href="/" aria-label={APP_NAME}><img src={APP_LOGO} alt={APP_NAME}/></a>
-      <a href="/">الرئيسية</a><a href="/sell">بكم أبيع سيارتي؟</a><a className="active" href="/estimate-from-image">تقدير السعر من الصورة</a><a href="/budget">أفضل 5 سيارات</a><a href="/compare">مقارنة السيارات</a><a href="/market">تحليل السوق</a><a href="/listings">الإعلانات</a>
+      <a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} className="hamoud-brand-link" href="/" aria-label={APP_NAME}><img src={APP_LOGO} alt={APP_NAME}/></a>
+      <a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/">الرئيسية</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/sell">بكم أبيع سيارتي؟</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} className="active" href="/estimate-from-image">تقدير السعر من الصورة</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/budget">أفضل 5 سيارات</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/compare">مقارنة السيارات</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/market">تحليل السوق</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/listings">الإعلانات</a>
     </nav>
     <main className={`hamoud-live-page gradio-container ${nightMode ? "night" : ""}`} dir="rtl">
       <FallingNightFlowers />
