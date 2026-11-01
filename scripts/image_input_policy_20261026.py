@@ -20,7 +20,7 @@ def normalized_input_path(path):
     if not transparent:
         yield path
         return
-    with TemporaryDirectory(prefix='carinsight_rgb_') as temp:
+    with TemporaryDirectory(prefix='saer_rgb_') as temp:
         target=Path(temp)/'input.png'
         rgb.save(target,format='PNG')
         yield target

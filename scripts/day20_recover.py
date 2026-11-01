@@ -20,7 +20,7 @@ import urllib.request
 from PIL import Image
 from day20_common import *
 
-UA = "CarInsightAcademic/1.0"
+UA = "SaerAcademic/1.0"
 FORMATS = {"WEBP": ".webp", "JPEG": ".jpg", "PNG": ".png"}
 
 class PublicClient:

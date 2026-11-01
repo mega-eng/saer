@@ -70,7 +70,7 @@ class ClipIdentityRuntime(CandidateRuntime):
 def main():
     import tkinter as tk
     from model_image_tester import ModelImageTester
-    root=tk.Tk();root.title('CarInsight — تجربة CLIP + DINO')
+    root=tk.Tk();root.title('سعّر — تجربة CLIP + DINO')
     ModelImageTester(root,engine_factory=ClipIdentityRuntime,
         subtitle='مرشح CLIP + DINO — النتائج تجريبية؛ أكّد السيارة قبل تقدير السعر')
     root.mainloop()

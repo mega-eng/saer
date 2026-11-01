@@ -1,4 +1,4 @@
-"""واجهة محلية لاختبار مرشحي الصور التطويريين في CarInsight."""
+"""واجهة محلية لاختبار مرشحي الصور التطويريين في سعّر."""
 from __future__ import annotations
 
 import json
@@ -151,7 +151,7 @@ class ModelImageTester:
     def __init__(self, root: tk.Tk, engine_factory=VisualFusionRuntime, subtitle: str | None = None) -> None:
         self.root = root
         self.engine_factory = engine_factory
-        root.title("CarInsight — تجربة نماذج الصور")
+        root.title("سعّر — تجربة نماذج الصور")
         root.geometry("920x700")
         root.minsize(760, 600)
         root.configure(bg="#f4f7fb")

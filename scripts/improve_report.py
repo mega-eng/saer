@@ -83,7 +83,7 @@ def report():
     save_csv(s/'checklist.csv',checklist)
     body=f'''<div dir="rtl" lang="ar">
 
-# تحسين نماذج CarInsight — 21 أكتوبر 2026
+# تحسين نماذج سعّر — 21 أكتوبر 2026
 
 **الحالة:** {'اكتملت التجارب والتقييم النهائي المسجل' if final else 'العمل جارٍ؛ النتائج المتاحة من val فقط، ولا وعود بنتائج test'}. آخر إصدار: {now()} UTC.
 

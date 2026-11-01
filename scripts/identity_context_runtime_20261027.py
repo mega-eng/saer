@@ -80,7 +80,7 @@ def main():
     import tkinter as tk
     from model_image_tester import ModelImageTester
     root = tk.Tk()
-    root.title('CarInsight — تجربة ترجيح هوية السيارة')
+    root.title('سعّر — تجربة ترجيح هوية السيارة')
     ModelImageTester(root, engine_factory=IdentityContextRuntime,
         subtitle='مرشح 27 أكتوبر — ترجيح الموديل بإشارة الماركة؛ يلزم تأكيد السيارة قبل التسعير')
     root.mainloop()

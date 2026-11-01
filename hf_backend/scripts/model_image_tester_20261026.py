@@ -88,6 +88,6 @@ def main():
     changes='، '.join(label[t] for t in selected)
     ModelImageTester(root,engine_factory=CandidateRuntime,
         subtitle=f'مرشح 26 أكتوبر — تحديث: {changes}. بقية الرؤوس محفوظة؛ التعميم الخارجي غير مثبت.')
-    root.title('CarInsight — تجربة مرشح 26 أكتوبر');root.mainloop()
+    root.title('سعّر — تجربة مرشح 26 أكتوبر');root.mainloop()
 
 if __name__=='__main__':main()

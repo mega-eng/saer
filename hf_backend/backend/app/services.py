@@ -100,7 +100,7 @@ def predict_image_price(paths: Path | list[Path], digest: str) -> dict:
             env["PYTHONPATH"] = os.environ["SAER_IMAGE_PYTHONPATH"]
         else:
             env.pop("PYTHONPATH", None)
-        worker = ROOT / "scripts" / "siarad_price_worker.py"
+        worker = ROOT / "scripts" / "saer_price_worker.py"
         with _lock:
             completed = subprocess.run([os.environ["SAER_IMAGE_PYTHON"], str(worker), *map(str, image_paths)],
                 cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900)

@@ -1,5 +1,5 @@
 """
-CarInsight AI - Image-only price estimation  (image -> price)
+Saer - Image-only price estimation  (image -> price)
 ===========================================================================
 Input  : car photos ONLY (no make / model / year / mileage / other models' outputs)
 Output : estimated price (SAR) + calibrated 80% / 90% range

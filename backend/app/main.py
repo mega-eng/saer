@@ -24,6 +24,7 @@ from PIL import Image, UnidentifiedImageError
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session
 
+from backend.app.branding_compat import LEGACY_SESSION_COOKIE, SESSION_COOKIE, session_token
 from backend.app.config import APP_NAME, MAX_IMAGE_PIXELS, MAX_UPLOAD_BYTES, ROOT, UPLOAD_DIR
 from backend.app.db import AuthSession, AuthUser, ImageAsset, Listing, ensure_database, get_session
 from backend.app.schemas import AuthCredentials, ListingCompareRequest, TabularPriceRequest
@@ -97,7 +98,7 @@ async def _save_upload(upload: UploadFile) -> tuple[Path, str]:
     if suffix not in {".jpg", ".jpeg", ".png", ".webp"}:
         raise HTTPException(415, "ارفع صورة بصيغة JPG أو PNG أو WebP")
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-    fd, temp_name = tempfile.mkstemp(prefix="siarad_", suffix=suffix, dir=UPLOAD_DIR)
+    fd, temp_name = tempfile.mkstemp(prefix="saer_", suffix=suffix, dir=UPLOAD_DIR)
     path = Path(temp_name)
     total = 0
     try:
@@ -167,7 +168,7 @@ def _set_session_cookie(response: Response, session: Session, user: AuthUser) ->
         user_id=user.user_id,
         expires_at=time.time() + _SESSION_DAYS * 86400,
     ))
-    response.set_cookie("siarad_session", token, max_age=_SESSION_DAYS * 86400,
+    response.set_cookie(SESSION_COOKIE, token, max_age=_SESSION_DAYS * 86400,
                         httponly=True, samesite="lax", secure=False, path="/")
     session.commit()
     return {"authenticated": True, "user": {"display_name": user.display_name, "email": user.email}}
@@ -175,7 +176,7 @@ def _set_session_cookie(response: Response, session: Session, user: AuthUser) ->
 
 @app.get("/api/auth/me")
 def auth_me(request: Request, session: Session = Depends(get_session)) -> dict[str, Any]:
-    token = request.cookies.get("siarad_session")
+    token = session_token(request.cookies)
     if not token:
         return {"authenticated": False, "user": None}
     token_hash = hashlib.sha256(token.encode()).hexdigest()
@@ -218,13 +219,14 @@ def auth_login(payload: AuthCredentials, response: Response, session: Session = 
 
 @app.post("/api/auth/logout")
 def auth_logout(request: Request, response: Response, session: Session = Depends(get_session)) -> dict[str, bool]:
-    token = request.cookies.get("siarad_session")
+    token = session_token(request.cookies)
     if token:
         saved = session.get(AuthSession, hashlib.sha256(token.encode()).hexdigest())
         if saved:
             session.delete(saved)
             session.commit()
-    response.delete_cookie("siarad_session", path="/")
+    response.delete_cookie(SESSION_COOKIE, path="/")
+    response.delete_cookie(LEGACY_SESSION_COOKIE, path="/")
     return {"ok": True}
 
 

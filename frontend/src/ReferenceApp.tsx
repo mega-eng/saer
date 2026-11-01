@@ -535,7 +535,7 @@ function Estimate() {
     .replace(/<svg viewBox="0 0 140 56"[\s\S]*?<\/svg>/, '<img class="empty-car-photo" src="/assets/road-cars/car1.png" alt="" loading="lazy" decoding="async" />')
     .replace("ارفع صور سيارة (من 1 إلى 8)", "ارفع صورة السيارة")
     .replace("أو جرّب «عيّنة عشوائية» من عيّنات الاختبار.", "");
-  const estimateHeroHtml = estimateHeroWithRoadCars().replace("CarInsight AI", APP_NAME);
+  const estimateHeroHtml = estimateHeroWithRoadCars().replace("سعّر", APP_NAME);
   useEffect(() => () => previews.forEach((url) => URL.revokeObjectURL(url)), [previews]);
   const selectionId = useRef(0);
   useEffect(() => () => { selectionId.current++; }, []);

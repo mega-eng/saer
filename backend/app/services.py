@@ -110,7 +110,7 @@ def predict_image_price(paths: Path | list[Path], digest: str) -> dict:
     cached = _cached(IMAGE_PRICE_CACHE_DIR, digest)
     if cached is not None:
         return {**cached, "من_ذاكرة_مؤقتة": True}
-    worker = ROOT / "scripts" / "siarad_price_worker.py"
+    worker = ROOT / "scripts" / "saer_price_worker.py"
     image_paths = [paths] if isinstance(paths, Path) else paths
     command = [str(_python_for_image_price()), str(worker), *(str(path) for path in image_paths)]
     env = os.environ.copy()

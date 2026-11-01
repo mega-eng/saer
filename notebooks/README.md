@@ -1,15 +1,15 @@
 # دفتر مرجعي لهوية السيارة
 
-الملف `CarInsight_Identity_Model_Make_Reference.ipynb` يغطي رأس الموديل المركب والرأس المنفصل للماركة لأغراض المقارنة فقط. لا يحتوي تدريبًا ولا يستدعي مودل حمود أو نموذج السعر الجدولي أو نماذج اللون والهيكل والبحث.
+الملف `saer_identity_reference.ipynb` يغطي رأس الموديل المركب والرأس المنفصل للماركة لأغراض المقارنة فقط. لا يحتوي تدريبًا ولا يستدعي مودل حمود أو نموذج السعر الجدولي أو نماذج اللون والهيكل والبحث.
 
 ## التشغيل
 
-1. افتح `C:\CAR\notebooks\CarInsight_Identity_Model_Make_Reference.ipynb` في Jupyter أو VS Code.
+1. افتح `C:\CAR\notebooks\saer_identity_reference.ipynb` في Jupyter أو VS Code.
 2. اختر Kernel يستخدم `C:\CAR\.venv\Scripts\python.exe`. إذا لم يظهر، سجله مرة واحدة من Anaconda Prompt أو PowerShell:
 
 ```bat
 cd /d C:\CAR
-.venv\Scripts\python.exe -m ipykernel install --user --name carinsight-venv --display-name "Python (CarInsight .venv)"
+.venv\Scripts\python.exe -m ipykernel install --user --name saer-venv --display-name "Python (Saer .venv)"
 ```
 
 3. اجعل مجلد العمل `C:\CAR` ثم شغّل جميع الخلايا بالترتيب.

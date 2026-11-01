@@ -1,13 +1,15 @@
 import os
 from pathlib import Path
 
+from backend.app.branding_compat import database_path
+
 ROOT = Path(__file__).resolve().parents[2]
 APP_NAME = "سعّر"
 DB_DIR = Path(os.environ.get("SAER_RUNTIME_CACHE", ROOT / "backend" / "instance"))
-DB_PATH = DB_DIR / "siarad.sqlite"
+DB_PATH = database_path(DB_DIR)
 LISTINGS_CSV = ROOT / "data" / "processed" / "listings.csv"
 IMAGES_CSV = ROOT / "data" / "processed" / "images.csv"
-UPLOAD_DIR = ROOT / "tmp" / "siarad_uploads"
+UPLOAD_DIR = ROOT / "tmp" / "saer_uploads"
 IDENTITY_CACHE_DIR = DB_DIR / "cache" / "identity"
 IMAGE_PRICE_CACHE_DIR = DB_DIR / "cache" / "image_price"
 IMAGE_PRICE_RUNTIME = ROOT / "models" / "image_price_hamoud_20261028"

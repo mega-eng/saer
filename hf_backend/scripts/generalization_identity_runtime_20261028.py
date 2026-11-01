@@ -111,7 +111,7 @@ if __name__ == "__main__":
     from model_image_tester import ModelImageTester
 
     root = tk.Tk()
-    root.title("CarInsight — تجربة نماذج الهوية المعتمدة")
+    root.title("سعّر — تجربة نماذج الهوية المعتمدة")
     ModelImageTester(
         root,
         engine_factory=ApprovedIdentityRuntime,
