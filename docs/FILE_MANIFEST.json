@@ -1,6 +1,6 @@
 {
   "file_count_in_commit": 289,
-  "bytes_without_manifest": 38045823,
+  "bytes_without_manifest": 38050927,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -35,8 +35,8 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 12356,
-      "sha256": "38fc8338e86054564611bb79f5f2f73f87fa75a1afacb126988817f0411c02f4"
+      "bytes": 14158,
+      "sha256": "b0b446807bced13acc2a06e6b0dfab7c769305cb62694dda1977ccae5c814d89"
     },
     {
       "path": "README.md",
@@ -130,13 +130,13 @@
     },
     {
       "path": "docs/PHASE4_REPRODUCIBILITY.md",
-      "bytes": 8300,
-      "sha256": "3ff2e05f3c546a13ebc3affa46dc545f9b6a4299bf61fe4ff2c78a626731735d"
+      "bytes": 10138,
+      "sha256": "af01e12da95fe4d2313a63b58e01f7f53d78a009ee440f5456c6949688471bd7"
     },
     {
       "path": "docs/PHASE4_VERIFICATION.json",
-      "bytes": 7616,
-      "sha256": "c8ed1e515cceb93c41a035cb27e4f95f776f76f04156b578a065e5a40047227c"
+      "bytes": 9080,
+      "sha256": "d42c5fe2b1d6aa8ca058e718314d530ffe68d074452c9c426989094ac93a2363"
     },
     {
       "path": "docs/PUBLIC_ENCODERS.json",

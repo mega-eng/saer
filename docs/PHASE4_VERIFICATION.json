@@ -224,5 +224,34 @@
     "over_25_MiB": 0,
     "secret_pattern_matches": 0,
     "largest_bytes": 5455872
+  },
+  "backup_validation": {
+    "verified_commit": "c9dcef239fb6e1631a6090c5bd7fd43079a97eca",
+    "validation_zip_bytes": 26850132,
+    "validation_zip_sha256": "71beb134377c5486272e084156f0f3e876a60cf723904bb4c5f3adcb17561366",
+    "git_files": 289,
+    "zip_files_including_version": 290,
+    "crc": "passed",
+    "git_byte_and_manifest_comparison": "passed",
+    "secret_pattern_matches": 0,
+    "extracted_copy_test": {
+      "health": {
+        "status": "ok",
+        "app": "سعّر",
+        "listings": 2742,
+        "images": 1
+      },
+      "tabular": {
+        "سعر_الإعلان_المقدر_ريال": 80013.91,
+        "الحالة": "تجريبي",
+        "تنبيه": "سعر إعلان تجريبي للمستعمل اعتمادًا على المواصفات وبيانات التدريب؛ ليس سعر بيع مضمونًا.",
+        "notice": "تقدير لسعر إعلان تقريبي اعتمادًا على المواصفات المدخلة وبيانات التدريب، وليس سعر بيع مضمونًا."
+      },
+      "sample_image": "HTTP 200 image/webp 9280 bytes",
+      "environment_reused": "isolated clean-main venv with explicit executable; no PYTHONPATH",
+      "full_model_retest_from_extracted_zip": false
+    },
+    "final_zip_path": "C:/car_handoff/delivery_backups/saer-delivery-phase4-final.zip",
+    "final_zip_commit": "Read VERSION.txt and ZIP comment; generated after final documentation commit"
   }
 }
