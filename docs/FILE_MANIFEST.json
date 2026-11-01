@@ -1,22 +1,22 @@
 {
-  "file_count_in_commit": 267,
-  "bytes_without_manifest": 37933805,
-  "note": "This manifest excludes its own size/hash; every other staged file is listed explicitly.",
+  "file_count_in_commit": 276,
+  "bytes_without_manifest": 37975339,
+  "note": "يستثني البيان حجمه وبصمته؛ البصمات محسوبة من ملفات Git المجهزة للإيداع، دون الكاش والبيئات وناتج البناء.",
   "files": [
     {
       "path": ".env.example",
-      "bytes": 380,
-      "sha256": "1a9263ad31da7beb7500376a3b809f89967044f5afda0c2ad65484c6dda01a79"
+      "bytes": 711,
+      "sha256": "53b40ffbd22bfd95fd11353c21dcef4d08e5b5169c96669b68a467a68e164cf3"
     },
     {
       "path": ".gitignore",
-      "bytes": 1085,
-      "sha256": "b9f96b481d4798770e25e1ea18c50d0e4c187c1890589f7a5a7b5bc795506a42"
+      "bytes": 1242,
+      "sha256": "ff7c76e0bd85361eb13b9ede5de71db1a661ae3e1acd0ca37165aaf612e1a8d4"
     },
     {
       "path": "AGENTS.md",
-      "bytes": 3248,
-      "sha256": "b1d0514883825a3d4fa96636b1f53b7aec522c7fc43a501df3ac8471d7af2984"
+      "bytes": 3818,
+      "sha256": "fb6748cee9b207b63910fb9b49f04801f99b0b84444e212e592f1ae07b2f7cdd"
     },
     {
       "path": "DATA_CONTRACT.md",
@@ -30,13 +30,13 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 5057,
-      "sha256": "0f102f56387384cccc168d4822b5a39f570d63934815feaaeaf8ada55b6e893a"
+      "bytes": 8325,
+      "sha256": "8bc7ebe9918b76cb3fa876356c4e7ac16d3193a332370fd4179d73621a25b489"
     },
     {
       "path": "README.md",
-      "bytes": 8197,
-      "sha256": "cab529213a97387e2a0857fb2c9ed47a137391aa7e7a7e08a96e646159e8c8c2"
+      "bytes": 11258,
+      "sha256": "8181b99af16f75267256110df1a5b0dafe322d3f432b761cd2e6919c5d30a299"
     },
     {
       "path": "REQ.md",
@@ -65,8 +65,8 @@
     },
     {
       "path": "backend/app/config.py",
-      "bytes": 759,
-      "sha256": "c26cc6b8178dfa4a151dc75011de957facde5f72e4cf66aa0bead88f50b93758"
+      "bytes": 755,
+      "sha256": "10db933300b1240486afc945e9d52af88bfa0456f12fd162ce4447c32d2e658a"
     },
     {
       "path": "backend/app/db.py",
@@ -75,8 +75,13 @@
     },
     {
       "path": "backend/app/main.py",
-      "bytes": 28382,
-      "sha256": "486ae08ace10e9b9b6066471928d60c9df182c27b3e2fbe7cdf147c82a4cb285"
+      "bytes": 28603,
+      "sha256": "ac80461dd34e3ca085c2147d99d5e62d3485836875c97d06c7411a2536055306"
+    },
+    {
+      "path": "backend/app/runtime_bridge.py",
+      "bytes": 794,
+      "sha256": "4a6c7fd57425a3538783c659c9597612c6fc285784d4c505830d07d41c302254"
     },
     {
       "path": "backend/app/schemas.py",
@@ -85,13 +90,13 @@
     },
     {
       "path": "backend/app/services.py",
-      "bytes": 4953,
-      "sha256": "cdc6a59f5b90b683476714d11c3f66481eb5bd7a7f35ae02b34f44a78a05ea45"
+      "bytes": 5413,
+      "sha256": "318f51fd5c61b58df32b308982bdea2bdb4b237f77bf6cd08662e896c43656e5"
     },
     {
       "path": "data/processed/images.csv",
-      "bytes": 3672616,
-      "sha256": "6c9eee336a5a9041e62d46249345a25f482afc1b376fe7b08e076bc3ce1b7ee4"
+      "bytes": 3672613,
+      "sha256": "32bcfd84d471b3a48944e65819ec15ec2e1be5cb93693514bc04ed3a74e27748"
     },
     {
       "path": "data/processed/listings.csv",
@@ -101,7 +106,12 @@
     {
       "path": "data/seed/saer.sqlite",
       "bytes": 5455872,
-      "sha256": "bd4181c77f1c66d3cf68c7b5c63c83647cf170fe7a15bc265ef798913e58c5ef"
+      "sha256": "f1112ded02ce0169d8e925ee871cca56ec6c809f412bf3b7e9e37f124aefe88f"
+    },
+    {
+      "path": "docs/GRADIO_VERIFICATION.json",
+      "bytes": 804,
+      "sha256": "9f49fd00228049ada5546a478883430b3808c92983852f00024fdcf59593a405"
     },
     {
       "path": "docs/PHASE2_HANDOFF.md",
@@ -109,9 +119,29 @@
       "sha256": "ae47df5170daaf8b43dbdf4250a6466fc2d19aaf4088000ef1cdf0207a134f64"
     },
     {
+      "path": "docs/PHASE3_RUNTIME.md",
+      "bytes": 9513,
+      "sha256": "1597f6ed67c6551a5dc1801dfaebacb3c27756729c6a79a3b287f4fa7ef96518"
+    },
+    {
+      "path": "docs/PUBLISHED_STATE.json",
+      "bytes": 819,
+      "sha256": "bd13934ece1b1532a707dbbfd6810b1a8d5242fb1639b6df286ee4e9d59b7d2f"
+    },
+    {
+      "path": "docs/RUNTIME_VERIFICATION.json",
+      "bytes": 3998,
+      "sha256": "46413f63577606e122c92401a0e3b4a37be1d66e36d5b14e056cff2bc0633a84"
+    },
+    {
+      "path": "docs/SAMPLE_IMAGES.md",
+      "bytes": 1517,
+      "sha256": "eec36fa4f15bef59cd96d35713af6b9da2da40458fa23aa5fb74c30f24e5c30a"
+    },
+    {
       "path": "docs/runtime-assets.json",
-      "bytes": 1331,
-      "sha256": "b66e5ee4e88f7344eed2fb340369929af543ca77ee287460ea7b3118abc01020"
+      "bytes": 1580,
+      "sha256": "bb4284ca369c3eabcb06ea9eb49079f83dbe1b1fb9e26e7c7d61b6dfa34cf602"
     },
     {
       "path": "frontend/.env.example",
@@ -274,9 +304,14 @@
       "sha256": "5abf05659c875a247eed80cfeb869f69430a6c2a99f8d3b6b098d8d29ac04575"
     },
     {
+      "path": "frontend/public/demo/img/sample-1186/04.webp",
+      "bytes": 9280,
+      "sha256": "f29ebddbe4a325924801bad906ea1dd156e4d9206f66ddda8015e0a393ea80dd"
+    },
+    {
       "path": "frontend/public/demo/listings.json",
-      "bytes": 1021621,
-      "sha256": "1fccff00f838835de2b557c96463a32af97813da8fc4aac01c926430eaf424b3"
+      "bytes": 1021637,
+      "sha256": "ae07455442a2812701b211c67e624631a0e1ce4e23b5cac0259abcf24015f7ff"
     },
     {
       "path": "frontend/public/demo/market.json",
@@ -535,8 +570,8 @@
     },
     {
       "path": "frontend/src/DemoBanner.tsx",
-      "bytes": 713,
-      "sha256": "11a05822b18669462594f26c23a124e977b1beb705c06aaff2c3ed45e1e41174"
+      "bytes": 722,
+      "sha256": "a874f5adcb502d279703820d7876c1c17cb43be08518002955ccb4f0de39b143"
     },
     {
       "path": "frontend/src/LoginPage.tsx",
@@ -590,8 +625,8 @@
     },
     {
       "path": "frontend/src/services/demoService.ts",
-      "bytes": 15642,
-      "sha256": "ebe54cb6c61f2a61b864980fc9ec5141982823877239adf316a07542373647c9"
+      "bytes": 15644,
+      "sha256": "953a779850b1eb49da39cbc52754cf9521848b8e6fac47256890d8725f0c54ff"
     },
     {
       "path": "frontend/src/services/imageUpload.ts",
@@ -635,8 +670,8 @@
     },
     {
       "path": "hf_backend/app.py",
-      "bytes": 8691,
-      "sha256": "26c9aee34ab3c7d99bce2718dc1c1cc213da967b26977d176677043c17f7f457"
+      "bytes": 8741,
+      "sha256": "d8a821528e13c840331a7fb56d309507caf1c4546d73bbd3c2cccd52ddbc1887"
     },
     {
       "path": "hf_backend/backend/__init__.py",
@@ -660,13 +695,13 @@
     },
     {
       "path": "hf_backend/backend/app/services.py",
-      "bytes": 3559,
-      "sha256": "cb7c12440003bfcde8e544c7cd7f5cbdf3592e95278484513a70e31702b218a8"
+      "bytes": 4709,
+      "sha256": "a86c9ef4ff8d0d12a3c2248cbb3b1787bd67068323a2cec27621718d1c8b352f"
     },
     {
       "path": "hf_backend/model_store.py",
-      "bytes": 4336,
-      "sha256": "13ea9d51493a7b1dd59eaa8f878e9aa4d1b978803898da0e561926bd02f420b7"
+      "bytes": 4385,
+      "sha256": "83da41c44e18e50ef5e98d19b87355001f6c530ec8a6e53e78f0d06099aaf74a"
     },
     {
       "path": "hf_backend/models/image_price_hamoud_20261028/image_to_price_v2.py",
@@ -680,8 +715,8 @@
     },
     {
       "path": "hf_backend/requirements.txt",
-      "bytes": 337,
-      "sha256": "510745ac5d13b603418bdfb9d70f87470232c1bc734f7c5ce3152f66d3098718"
+      "bytes": 443,
+      "sha256": "165e7fb1fe41b3c24baa4899afa5547b403d15bd11a7f8d49865b1b5ed125339"
     },
     {
       "path": "hf_backend/scripts/car_model_runtime.py",
@@ -779,6 +814,11 @@
       "sha256": "a4c5d7716e4b5bb37f0162b7d369bef8b9c295031d1f3fcde4afee22ff726fda"
     },
     {
+      "path": "hf_backend/scripts/siarad_price_worker.py",
+      "bytes": 1062,
+      "sha256": "6a168e409d45e02e03f433b5e989bcfc7f5a0a9d3358b9172ad694ffae2b40d8"
+    },
+    {
       "path": "hf_backend/scripts/visual_fusion_predict.py",
       "bytes": 7058,
       "sha256": "c58cddb8afb30fe4857c9a379faffce9f4944d8bc7bb99a3eb0116568c4fbc62"
@@ -840,8 +880,8 @@
     },
     {
       "path": "notebooks/kaggle_server.ipynb",
-      "bytes": 13476,
-      "sha256": "fc093b429bf33a7ba374757f91b22273982ce07071c7ee2469e2ad25663568ae"
+      "bytes": 14344,
+      "sha256": "32b3c15bbf4951d2325a0697c50bfcde48d4cb960a029d683e16f611061311c2"
     },
     {
       "path": "outputs/generalization_rescue_20261028_v1/model/candidate.joblib",
@@ -1185,8 +1225,8 @@
     },
     {
       "path": "scripts/siarad_price_worker.py",
-      "bytes": 843,
-      "sha256": "d53dcd71ae235633f0dc7bdf27ca1edfd1c77511050c9a7ef673f9f96ba8f260"
+      "bytes": 1062,
+      "sha256": "6a168e409d45e02e03f433b5e989bcfc7f5a0a9d3358b9172ad694ffae2b40d8"
     },
     {
       "path": "scripts/train_clip_identity_heads_20261027.py",
@@ -1332,6 +1372,11 @@
       "path": "tools/package_kaggle.py",
       "bytes": 1521,
       "sha256": "e59c67ed4831bf4a55d162271354c0b5a0253973e7bf737e8893453b7254e57e"
+    },
+    {
+      "path": "tools/verify_delivery_runtime.py",
+      "bytes": 2968,
+      "sha256": "f9c4a930e687940263a47e801ff9bfdc1aca706eb7a13293aac9535bb8edbdb8"
     }
   ]
 }

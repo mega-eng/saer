@@ -53,7 +53,7 @@ python tools/package_kaggle.py
 
 ```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r hf_backend/requirements.txt gradio==6.31.0
+.\.venv\Scripts\python.exe -m pip install -r hf_backend/requirements.txt gradio==5.49.1
 $env:LOCAL_ASSETS_DIR=(Get-Location).Path
 .\.venv\Scripts\python.exe hf_backend/app.py
 ```
@@ -77,3 +77,19 @@ py -3.12 -m venv .venv
 ### حالة التحقق
 
 فُحصت أحجام الأوزان وبصماتها، وقُرئت preprocessing وخرائط الفئات دون تدريب أو استدلال. أُنشئت قاعدة seed من الملفات المختارة بجداول حسابات فارغة. بقي بناء الواجهة وفحص القائمة المجهزة والأسرار ضمن إجراءات هذه المرحلة، وتُسجّل نتيجتها النهائية في PROGRESS.md وdocs/PHASE2_HANDOFF.md. التشغيل الحي وKaggle لم يُختبرا بعد.
+
+## تشغيل نسخة التسليم — المرحلة الثالثة
+
+المرجع هو فرع `release/committee-delivery`. إصلاحات الواجهة في `fix/frontend-layout` وطلب المراجعة #2 مستقلة ولم تدمج. الموقع الحالي https://saer-rmsavg637.pages.dev لم يُعد نشره في هذه المرحلة.
+
+الأوزان الثلاثة وpreprocessing مضمنة، مجموعها 5,916,575 بايت. المشفرات العامة CLIP وDINOv2 وResNet18 وSSDLite ليست ضمن Git؛ يلزم كاش محلي أو تنزيلها عند أول تشغيل. لا تنشئ نتائج بديلة عند غيابها. راجع `docs/runtime-assets.json` و`docs/PHASE3_RUNTIME.md`.
+
+خادم Gradio: أنشئ بيئة Python 3.12 وثبت `hf_backend/requirements.txt`. يشغّل نموذج السعر من الصورة في بيئة مستقلة بـscikit-learn 1.6.1؛ البيئة الأساسية تستخدم 1.9.1. على جهاز يملك مكتبات Torch وبقية الحزم في البيئة الأساسية يمكن إنشاء عامل منفصل بـ`python -m venv --system-site-packages .runtime/image-env` ثم تثبيت `scikit-learn==1.6.1` باستخدام Python الخاص به. اضبط `SAER_IMAGE_PYTHON` إلى مسار ذلك Python. لا تحمل وزن الصورة في بيئة 1.9.1.
+
+اضبط `SAER_APP_ROOT` و`LOCAL_ASSETS_DIR` إلى جذر المستودع، و`FRONTEND_ORIGINS` إلى أصل الواجهة المسموح به، ثم شغّل `python -m uvicorn app:app --app-dir hf_backend --host 127.0.0.1 --port 7863`. افتح الواجهة محلياً مع `?api=http%3A%2F%2F127.0.0.1%3A7863` لتفعيل Gradio في جلسة الاختبار فقط. هذا العنوان المحلي لا يصلح لخدمة مستخدمي الموقع المنشور.
+
+لتشغيل REST API البديل: ثبت `requirements-web.txt` مع حزم النماذج الأساسية، واضبط عامل الصورة نفسه، ثم `python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000`. نفذ `python tools/verify_delivery_runtime.py` مع كاش تشغيل جديد للتحقق من تنبؤات غير مخزنة؛ تكتب الأداة تقرير تحقق محلياً ولا تغذي الواجهة بنتائج محفوظة.
+
+بناء الواجهة من نسخة التسليم: من `frontend` شغّل `pnpm install --frozen-lockfile` ثم اضبط `VITE_DEMO_MODE=true` وشغّل `pnpm build`. الناتج `frontend/dist-demo` محلي فقط، ولا يرفع تلقائياً. تجنب البناء داخل مجلد النشر المعتمد.
+
+توجد 2,742 إعلاناً تاريخياً وصورة أصلية واحدة مرتبطة بالإعلان `demo-1186`. بقية الصور مؤجلة؛ راجع `docs/SAMPLE_IMAGES.md`. الدفتر المعدل لم يختبر على Kaggle، ولم يختبر تثبيت كامل من بيئة فارغة؛ القيود مفصلة في تقرير المرحلة الثالثة.
