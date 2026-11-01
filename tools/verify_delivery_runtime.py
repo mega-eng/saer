@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--base-url', default='http://127.0.0.1:8000')
+    parser.add_argument("--output", type=Path, default=ROOT / "docs/RUNTIME_VERIFICATION.json")
     args = parser.parse_args()
     assert urlsplit(args.base_url).hostname in {'127.0.0.1', 'localhost'}
     image = ROOT / 'frontend/public/demo/img/sample-1186/04.webp'
@@ -31,14 +32,14 @@ def main():
                'health': request('/api/health')}
     results['tabular'] = request('/api/estimate-tabular', json.dumps(payload).encode(), 'application/json')
     assert math.isfinite(results['tabular']['سعر_الإعلان_المقدر_ريال'])
-    (ROOT / 'docs/RUNTIME_VERIFICATION.json').write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding='utf-8')
+    args.output.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding='utf-8')
     boundary = 'saer-runtime-check'
     body = (f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="sample.webp"\r\nContent-Type: image/webp\r\n\r\n'.encode()
             + image.read_bytes() + f'\r\n--{boundary}--\r\n'.encode())
     for key, endpoint in [('image_price', '/api/estimate-image-price'), ('identity', '/api/recognize')]:
         results[key] = request(endpoint, body, f'multipart/form-data; boundary={boundary}')
         assert results[key].get('من_ذاكرة_مؤقتة') is False, 'Expected a fresh model call; use a fresh runtime cache.'
-        (ROOT / 'docs/RUNTIME_VERIFICATION.json').write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding='utf-8')
+        args.output.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding='utf-8')
         print(key, json.dumps(results[key], ensure_ascii=False), flush=True)
     assert math.isfinite(results['image_price']['price_sar'])
     assert results['identity']['الاقتراح_الرئيسي']['الماركة']
