@@ -1,6 +1,6 @@
 {
-  "file_count_in_commit": 266,
-  "bytes_without_manifest": 37836558,
+  "file_count_in_commit": 267,
+  "bytes_without_manifest": 37933805,
   "note": "This manifest excludes its own size/hash; every other staged file is listed explicitly.",
   "files": [
     {
@@ -17,6 +17,41 @@
       "path": "AGENTS.md",
       "bytes": 3248,
       "sha256": "b1d0514883825a3d4fa96636b1f53b7aec522c7fc43a501df3ac8471d7af2984"
+    },
+    {
+      "path": "DATA_CONTRACT.md",
+      "bytes": 7870,
+      "sha256": "16ba5e5f4ee8259e8d8a9ed6c2be1892127f79b7d042b158e77aed65090acc53"
+    },
+    {
+      "path": "ML_SPEC.md",
+      "bytes": 7570,
+      "sha256": "26217531d38fac4e0664698ec4380c6276455af1d4b9e84a2b0fd665049ab5f6"
+    },
+    {
+      "path": "PROGRESS.md",
+      "bytes": 5057,
+      "sha256": "0f102f56387384cccc168d4822b5a39f570d63934815feaaeaf8ada55b6e893a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8197,
+      "sha256": "cab529213a97387e2a0857fb2c9ed47a137391aa7e7a7e08a96e646159e8c8c2"
+    },
+    {
+      "path": "REQ.md",
+      "bytes": 14758,
+      "sha256": "52d1167e6ac8df78495891d087cf2e50a18a5f563509c13f717b30d4ae79175c"
+    },
+    {
+      "path": "ROADMAP.md",
+      "bytes": 8355,
+      "sha256": "989b6fc69738410b2e24c76a6ded250db4fb2f36a32bb0393d3783d5f7ca5c67"
+    },
+    {
+      "path": "TEST_PLAN.md",
+      "bytes": 3735,
+      "sha256": "9dea6081c6b71b70b4977fa4c74d330dfa7aa0fd980cafbabe3f6c8860926ce0"
     },
     {
       "path": "backend/__init__.py",
@@ -69,14 +104,9 @@
       "sha256": "bd4181c77f1c66d3cf68c7b5c63c83647cf170fe7a15bc265ef798913e58c5ef"
     },
     {
-      "path": "DATA_CONTRACT.md",
-      "bytes": 7870,
-      "sha256": "16ba5e5f4ee8259e8d8a9ed6c2be1892127f79b7d042b158e77aed65090acc53"
-    },
-    {
       "path": "docs/PHASE2_HANDOFF.md",
-      "bytes": 4854,
-      "sha256": "1415e72fbdde33ebbe9b271dba3b4b7251606e1cc939aef6b70e28a7fd444015"
+      "bytes": 5465,
+      "sha256": "ae47df5170daaf8b43dbdf4250a6466fc2d19aaf4088000ef1cdf0207a134f64"
     },
     {
       "path": "docs/runtime-assets.json",
@@ -137,6 +167,11 @@
       "path": "frontend/public/assets/road-cars/car5.png",
       "bytes": 97616,
       "sha256": "e16f08601221d8b3334e60e95e1a9c675cfdb428f1ace24701c3bb6d8da7222f"
+    },
+    {
+      "path": "frontend/public/brands/README.md",
+      "bytes": 435,
+      "sha256": "cf49cd1b710f8f7a8be57bf97a129c771281de4cb419712efa4a92d310c50caf"
     },
     {
       "path": "frontend/public/brands/audi.svg",
@@ -222,11 +257,6 @@
       "path": "frontend/public/brands/porsche.svg",
       "bytes": 24198,
       "sha256": "53cfaca7fc83fbab4f75ec2a02f54062d37e9244ac077174df4cab917c75f710"
-    },
-    {
-      "path": "frontend/public/brands/README.md",
-      "bytes": 435,
-      "sha256": "cf49cd1b710f8f7a8be57bf97a129c771281de4cb419712efa4a92d310c50caf"
     },
     {
       "path": "frontend/public/brands/suzuki.svg",
@@ -444,6 +474,11 @@
       "sha256": "429567b2d99dc9dffb8ad5c275dc87dd4555064b2548221b53de4ee889430f95"
     },
     {
+      "path": "frontend/public/ui/login/login-reference.jpg",
+      "bytes": 95925,
+      "sha256": "ee4801fdae44616e517a5b7481cf40a44eec439f1074c450a919013c34783128"
+    },
+    {
       "path": "frontend/public/ui/saer-header.png",
       "bytes": 22435,
       "sha256": "7225d2cc38eb398c4e8dae4e455dceeeccc6f7b53a8d89b8d72bc344d6c86a9e"
@@ -499,6 +534,21 @@
       "sha256": "7dbf4c693ee6280b4c4be4688c17dcdfc66f8073a626fb36abb849ab24ffe758"
     },
     {
+      "path": "frontend/src/DemoBanner.tsx",
+      "bytes": 713,
+      "sha256": "11a05822b18669462594f26c23a124e977b1beb705c06aaff2c3ed45e1e41174"
+    },
+    {
+      "path": "frontend/src/LoginPage.tsx",
+      "bytes": 2017,
+      "sha256": "5167621a3ae7681c9f2a067e4c284fd0c69c2b8c21b3ab7ec933614c761e9aa4"
+    },
+    {
+      "path": "frontend/src/ReferenceApp.tsx",
+      "bytes": 78174,
+      "sha256": "ed684a47f5ef124303301f6588c6a1169875836bea7d9fcebe836abcdf99c6c9"
+    },
+    {
       "path": "frontend/src/config.ts",
       "bytes": 5889,
       "sha256": "2ef78e4b1009948ee131155c6349ccee08b4ce89c43f86430721c0ca5e2f93d3"
@@ -507,11 +557,6 @@
       "path": "frontend/src/data/reference-layout.json",
       "bytes": 7173,
       "sha256": "6b9a644b26d3aa9f0b4a79388110cb8667486f858150f8952575e9ed4e7c3108"
-    },
-    {
-      "path": "frontend/src/DemoBanner.tsx",
-      "bytes": 713,
-      "sha256": "11a05822b18669462594f26c23a124e977b1beb705c06aaff2c3ed45e1e41174"
     },
     {
       "path": "frontend/src/hamoud-live-controls.css",
@@ -534,11 +579,6 @@
       "sha256": "f7f62b14aa5490ae40634463cc0dffd352c8877cebd588d758640a1b6fffb3cb"
     },
     {
-      "path": "frontend/src/LoginPage.tsx",
-      "bytes": 2017,
-      "sha256": "5167621a3ae7681c9f2a067e4c284fd0c69c2b8c21b3ab7ec933614c761e9aa4"
-    },
-    {
       "path": "frontend/src/main.tsx",
       "bytes": 237,
       "sha256": "e614ac3b211ff46384d74b651f79fed94b722a0b122bd883c7e2d268ea70333a"
@@ -547,11 +587,6 @@
       "path": "frontend/src/reference.css",
       "bytes": 46715,
       "sha256": "59cd079453d18bd015de5c9f431e668d55421d963762199263150210654ea22b"
-    },
-    {
-      "path": "frontend/src/ReferenceApp.tsx",
-      "bytes": 78174,
-      "sha256": "ed684a47f5ef124303301f6588c6a1169875836bea7d9fcebe836abcdf99c6c9"
     },
     {
       "path": "frontend/src/services/demoService.ts",
@@ -585,13 +620,18 @@
     },
     {
       "path": "frontend/vite.config.ts",
-      "bytes": 4766,
-      "sha256": "3fc3dd990716d77bfad1f48eb62a51971ce463e023f0c89752a1146cc48a1f36"
+      "bytes": 4822,
+      "sha256": "52a298e17e9a94f0ebec7b4c2b9d7aa22ec8b0f77797f9f14b30197ef81c5548"
     },
     {
       "path": "hf_backend/.gitignore",
       "bytes": 253,
       "sha256": "8dcf2a8bfdb6e121b3070ce36f2f86ca45af328e4dd7a0ea7539f1777b5d3d89"
+    },
+    {
+      "path": "hf_backend/README.md",
+      "bytes": 5839,
+      "sha256": "4e4310a0d61b062e6c27ee1fee7b4fbd75c4e314c5709e7a55439f6e928c24a8"
     },
     {
       "path": "hf_backend/app.py",
@@ -637,11 +677,6 @@
       "path": "hf_backend/models/image_price_hamoud_20261028/predict_image_price.py",
       "bytes": 2740,
       "sha256": "d5694a3f614fa16b68665ac78df2fb95e6c9ac4f1a83364e6ef6190ee70265cf"
-    },
-    {
-      "path": "hf_backend/README.md",
-      "bytes": 5839,
-      "sha256": "4e4310a0d61b062e6c27ee1fee7b4fbd75c4e314c5709e7a55439f6e928c24a8"
     },
     {
       "path": "hf_backend/requirements.txt",
@@ -754,11 +789,6 @@
       "sha256": "76b541105a5da2945ece9f6ead7679b85f688747adc90483284322b6d159138e"
     },
     {
-      "path": "ML_SPEC.md",
-      "bytes": 7570,
-      "sha256": "26217531d38fac4e0664698ec4380c6276455af1d4b9e84a2b0fd665049ab5f6"
-    },
-    {
       "path": "models/identity_current.json",
       "bytes": 2277,
       "sha256": "797b0df0235817ec5b7c23d36a7886530a52872dbecc8a476c05441e1bf9682b"
@@ -804,34 +834,19 @@
       "sha256": "cf697912661963da9bef75c9bbe87ab90189f4a82599810e20e84e33ae104fcf"
     },
     {
-      "path": "notebooks/kaggle_server.ipynb",
-      "bytes": 13476,
-      "sha256": "fc093b429bf33a7ba374757f91b22273982ce07071c7ee2469e2ad25663568ae"
-    },
-    {
       "path": "notebooks/README.md",
       "bytes": 1548,
       "sha256": "a84b3384e49961af83020d548a414f8e284a37c5440ae13fab0013578c1dbd46"
     },
     {
+      "path": "notebooks/kaggle_server.ipynb",
+      "bytes": 13476,
+      "sha256": "fc093b429bf33a7ba374757f91b22273982ce07071c7ee2469e2ad25663568ae"
+    },
+    {
       "path": "outputs/generalization_rescue_20261028_v1/model/candidate.joblib",
       "bytes": 438661,
       "sha256": "ce330fbe0491c3f8c9bd7dafb249f3e09bdad677077a9cadd220fa084af05156"
-    },
-    {
-      "path": "PROGRESS.md",
-      "bytes": 4402,
-      "sha256": "95018a7c5a5d3e1b77ef8d7e4b9a965b017eeb3feac872c72da38d99cd93d3c2"
-    },
-    {
-      "path": "README.md",
-      "bytes": 8197,
-      "sha256": "cab529213a97387e2a0857fb2c9ed47a137391aa7e7a7e08a96e646159e8c8c2"
-    },
-    {
-      "path": "REQ.md",
-      "bytes": 14758,
-      "sha256": "52d1167e6ac8df78495891d087cf2e50a18a5f563509c13f717b30d4ae79175c"
     },
     {
       "path": "requirements-data.txt",
@@ -852,11 +867,6 @@
       "path": "requirements-web.txt",
       "bytes": 309,
       "sha256": "93beb71d686dc53d508a17d34763d76609e5b942ad1f47a5a999c612fe718a78"
-    },
-    {
-      "path": "ROADMAP.md",
-      "bytes": 8355,
-      "sha256": "989b6fc69738410b2e24c76a6ded250db4fb2f36a32bb0393d3783d5f7ca5c67"
     },
     {
       "path": "run_siarad.bat",
@@ -1197,11 +1207,6 @@
       "path": "scripts/visual_fusion_round.py",
       "bytes": 21662,
       "sha256": "0f674e79abc0a8266b0c1c139b1cecd296f5b2d9785da3c086404949c69f2c29"
-    },
-    {
-      "path": "TEST_PLAN.md",
-      "bytes": 3735,
-      "sha256": "9dea6081c6b71b70b4977fa4c74d330dfa7aa0fd980cafbabe3f6c8860926ce0"
     },
     {
       "path": "tests/test_brand_final_round.py",

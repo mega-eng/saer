@@ -44,6 +44,7 @@ function demoBuildPlugin(): Plugin {
       references.add("/ui/skyline.png");
       references.add("/fonts/OFL.txt");
       references.add("/demo/placeholder.svg");
+      references.add("/ui/login/login-reference.jpg");
       const demoJsonFiles = new Set([
         "/demo/listings.json", "/demo/meta.json", "/demo/pricing-options.json",
         "/demo/recommendations.json", "/demo/market.json",
