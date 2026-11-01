@@ -126,12 +126,12 @@ with gr.Blocks(title="سعّر — خدمة التقدير الحي") as demo:
     gr.Markdown("# سعّر — واجهة API للنماذج المعتمدة")
     gr.Markdown("تقديرات تجريبية؛ البيانات التاريخية لا تمثل سعر السوق الحالي.")
     with gr.Tab("التعرف على السيارة"):
-        identity_file = gr.File(label="صورة السيارة", file_types=["image"], type="filepath")
+        identity_file = gr.File(label="صورة السيارة", file_types=[".jpg", ".jpeg", ".png", ".webp"], type="filepath")
         identity_button = gr.Button("تعرّف على السيارة")
         identity_result = gr.JSON(label="النتيجة")
         identity_button.click(predict_identity, identity_file, identity_result, api_name="identify_vehicle")
     with gr.Tab("السعر من الصورة"):
-        price_files = gr.File(label="صورة أو صور السيارة نفسها", file_types=["image"], file_count="multiple", type="filepath")
+        price_files = gr.File(label="صورة أو صور السيارة نفسها", file_types=[".jpg", ".jpeg", ".png", ".webp"], file_count="multiple", type="filepath")
         price_button = gr.Button("قدّر السعر")
         price_result = gr.JSON(label="النتيجة")
         price_button.click(predict_image, price_files, price_result, api_name="predict_image")
