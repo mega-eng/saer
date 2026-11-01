@@ -52,8 +52,22 @@ credentials.json
 credentials-*.json
 service-account*.json
 
-# لا تُستثنى data/ أو models/ أو outputs/ أو امتدادات الأوزان والبيانات هنا.
-# ظهورها في git status ليس إذناً برفعها؛ يجب مراجعة الأحجام والخصوصية قبل staging.
+# حماية الإضافات الجديدة؛ الملفات المتتبعة الحالية تبقى محفوظة دون حذف.
+/data/raw/
+/data/recovery/
+/data/processed/*.csv
+/data/seed/*.sqlite
+*.joblib
+*.pt
+*.pth
+*.sqlite
+*.sqlite3
+*.npz
+*.xlsx
+*.zip
+/frontend/public/demo/img/**
+# لا تؤثر هذه القواعد على الملفات التي يتتبعها Git بالفعل.
+# تظل صور الواجهة متاحة؛ تراجع حقوق صور الإعلانات قبل إضافة المزيد.
 
 # بيئات وكاش التحقق المحلي
 .runtime/
