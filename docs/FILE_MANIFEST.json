@@ -1,7 +1,7 @@
 {
-  "file_count_in_commit": 276,
-  "bytes_without_manifest": 37975339,
-  "note": "يستثني البيان حجمه وبصمته؛ البصمات محسوبة من ملفات Git المجهزة للإيداع، دون الكاش والبيئات وناتج البناء.",
+  "file_count_in_commit": 289,
+  "bytes_without_manifest": 38045794,
+  "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
       "path": ".env.example",
@@ -24,19 +24,24 @@
       "sha256": "16ba5e5f4ee8259e8d8a9ed6c2be1892127f79b7d042b158e77aed65090acc53"
     },
     {
+      "path": "DELIVERY.md",
+      "bytes": 5776,
+      "sha256": "d19ff96ca9bd642ded098aab2f18a8c20254a67197a6d4e87e80ea835160e8e7"
+    },
+    {
       "path": "ML_SPEC.md",
       "bytes": 7570,
       "sha256": "26217531d38fac4e0664698ec4380c6276455af1d4b9e84a2b0fd665049ab5f6"
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 8325,
-      "sha256": "8bc7ebe9918b76cb3fa876356c4e7ac16d3193a332370fd4179d73621a25b489"
+      "bytes": 12356,
+      "sha256": "38fc8338e86054564611bb79f5f2f73f87fa75a1afacb126988817f0411c02f4"
     },
     {
       "path": "README.md",
-      "bytes": 11258,
-      "sha256": "8181b99af16f75267256110df1a5b0dafe322d3f432b761cd2e6919c5d30a299"
+      "bytes": 11705,
+      "sha256": "355a12e4e1a9e837ac295ad31401ca8c23b6da41a81d4d297656382c2c8df5da"
     },
     {
       "path": "REQ.md",
@@ -65,8 +70,8 @@
     },
     {
       "path": "backend/app/config.py",
-      "bytes": 755,
-      "sha256": "10db933300b1240486afc945e9d52af88bfa0456f12fd162ce4447c32d2e658a"
+      "bytes": 809,
+      "sha256": "67164197acaea7c520791ad5f12e3414b754d3b51d6f9b00e5721e358c33be83"
     },
     {
       "path": "backend/app/db.py",
@@ -122,6 +127,26 @@
       "path": "docs/PHASE3_RUNTIME.md",
       "bytes": 9513,
       "sha256": "1597f6ed67c6551a5dc1801dfaebacb3c27756729c6a79a3b287f4fa7ef96518"
+    },
+    {
+      "path": "docs/PHASE4_REPRODUCIBILITY.md",
+      "bytes": 8300,
+      "sha256": "3ff2e05f3c546a13ebc3affa46dc545f9b6a4299bf61fe4ff2c78a626731735d"
+    },
+    {
+      "path": "docs/PHASE4_VERIFICATION.json",
+      "bytes": 7616,
+      "sha256": "c8ed1e515cceb93c41a035cb27e4f95f776f76f04156b578a065e5a40047227c"
+    },
+    {
+      "path": "docs/PUBLIC_ENCODERS.json",
+      "bytes": 25711,
+      "sha256": "99aab620f648cf4e0da22322f3a3abefa652c3f4ba2a2fa6e1d73298b5088f5a"
+    },
+    {
+      "path": "docs/PUBLIC_ENCODERS.md",
+      "bytes": 3905,
+      "sha256": "c5a40ce5b8049a955b9fed3b545b0eb9ea5e8e02d4a7e43084030b31a07ce5b7"
     },
     {
       "path": "docs/PUBLISHED_STATE.json",
@@ -715,8 +740,8 @@
     },
     {
       "path": "hf_backend/requirements.txt",
-      "bytes": 443,
-      "sha256": "165e7fb1fe41b3c24baa4899afa5547b403d15bd11a7f8d49865b1b5ed125339"
+      "bytes": 655,
+      "sha256": "d2240d6d9c667c3aa83be55b572963c5a496978b926f1776d7037de2f640be62"
     },
     {
       "path": "hf_backend/scripts/car_model_runtime.py",
@@ -880,8 +905,8 @@
     },
     {
       "path": "notebooks/kaggle_server.ipynb",
-      "bytes": 14344,
-      "sha256": "32b3c15bbf4951d2325a0697c50bfcde48d4cb960a029d683e16f611061311c2"
+      "bytes": 14535,
+      "sha256": "ed00a04e9b74a320646dd3321383fe42593e805ca4396c7f53d7fbd1607bb05d"
     },
     {
       "path": "outputs/generalization_rescue_20261028_v1/model/candidate.joblib",
@@ -894,9 +919,29 @@
       "sha256": "55953dae406a34601b9e4f1c0e96ba05274f605f2faab828ad26441adc927e27"
     },
     {
+      "path": "requirements-image-lock.txt",
+      "bytes": 802,
+      "sha256": "6e907b700e1a67cfa3a7f2e9bb900cbb40fa14129b3a03952f5ccbfa07eb63d1"
+    },
+    {
+      "path": "requirements-image.txt",
+      "bytes": 336,
+      "sha256": "3d2c7672ecd0192ea629e4ff75878ce5a4fda69111452a6cee7ccfb7802ef7fe"
+    },
+    {
       "path": "requirements-models.txt",
       "bytes": 173,
-      "sha256": "c9e0107cfd4d821f554744f853e1501a5af841d4f9473802cb0e2e8058e884ae"
+      "sha256": "4c775e043f22bee252053a462769005c3058549666edbc9cc7f73b5c1eebff55"
+    },
+    {
+      "path": "requirements-runtime-lock.txt",
+      "bytes": 1520,
+      "sha256": "384dc05b28642a4e2716a229949e8b660cbb852dc69389c6dbb53b2c5f0143d2"
+    },
+    {
+      "path": "requirements-runtime.txt",
+      "bytes": 196,
+      "sha256": "d02ed5dde9a1e2e558e193498b759c5c4a2ef8d93a2f678c6ce12ff7cc5bbd73"
     },
     {
       "path": "requirements-test.txt",
@@ -905,8 +950,8 @@
     },
     {
       "path": "requirements-web.txt",
-      "bytes": 309,
-      "sha256": "93beb71d686dc53d508a17d34763d76609e5b942ad1f47a5a999c612fe718a78"
+      "bytes": 346,
+      "sha256": "92a48ab498410f2a71628f62869397d0dcd82aef14609e9e662630807768efe1"
     },
     {
       "path": "run_siarad.bat",
@@ -1354,6 +1399,11 @@
       "sha256": "55a903c6fab43b06fcc9daf11e13c484ae016ba5bdf76b981d4eec662a7289b2"
     },
     {
+      "path": "tools/check_runtime_env.py",
+      "bytes": 1406,
+      "sha256": "1e078a180079d9bac60411a22352f53258735ee02a3c253256b55b672c1ab022"
+    },
+    {
       "path": "tools/clean_cars.py",
       "bytes": 3795,
       "sha256": "71cad0c3ac30d92f3463325f605aa0ad54f814640f67fa34e274a3ac9f97acaf"
@@ -1369,14 +1419,29 @@
       "sha256": "1c8bde6a1a6613cea76393f2e5a21902c12c30c7adda560ae8bddec609dcd8b8"
     },
     {
+      "path": "tools/package_delivery.py",
+      "bytes": 3827,
+      "sha256": "eeffbbc027ad121743c6a5db19e67daa9a6f4b71cce5d167a0e7131e827bcf6e"
+    },
+    {
       "path": "tools/package_kaggle.py",
       "bytes": 1521,
       "sha256": "e59c67ed4831bf4a55d162271354c0b5a0253973e7bf737e8893453b7254e57e"
     },
     {
+      "path": "tools/restore_public_encoders.py",
+      "bytes": 4272,
+      "sha256": "50f499e3bac1453c8191b671ad18cbe352d61bb427afc8bab9008e0bed439331"
+    },
+    {
+      "path": "tools/start_runtime.ps1",
+      "bytes": 1780,
+      "sha256": "c14fe9e60a7a43b0c748e5616fcc03e776a75f47a0ac8f916ca44de5349f155b"
+    },
+    {
       "path": "tools/verify_delivery_runtime.py",
-      "bytes": 2968,
-      "sha256": "f9c4a930e687940263a47e801ff9bfdc1aca706eb7a13293aac9535bb8edbdb8"
+      "bytes": 3004,
+      "sha256": "9244bca5d9fc955c69db327f583067e44b5b444a34e6a9e224eb38fb1ab433fa"
     }
   ]
 }
