@@ -317,7 +317,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
           <button type="button" role="menuitem" onClick={() => { setEditedName(guestName); setGuestMenuOpen(false); setEditingGuestName(true); }}>تعديل الاسم</button>
           <button type="button" role="menuitem" onClick={logoutGuest}>تسجيل الخروج</button>
         </div>}
-        {editingGuestName && <div className="guest-name-backdrop" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) setEditingGuestName(false); }}>
+        {editingGuestName && createPortal(<div className="guest-name-backdrop" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) setEditingGuestName(false); }}>
           <form className="guest-name-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-guest-name-title" onSubmit={saveGuestName}>
             <h1 id="edit-guest-name-title">تعديل الاسم</h1>
             <label htmlFor="edit-guest-first-name">الاسم الأول</label>
@@ -325,7 +325,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
             <button type="submit">حفظ الاسم</button>
             <button className="guest-name-cancel" type="button" onClick={() => setEditingGuestName(false)}>إلغاء</button>
           </form>
-        </div>}
+        </div>, document.body)}
       </div>
     </header>
   );
