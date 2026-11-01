@@ -234,7 +234,7 @@ function priceResult(result: Record<string, any>) {
 }
 
 export async function estimateFromImage(file: File) {
-  return priceResult(await callLive<Record<string, any>>("predict_image", [handle_file(file)]));
+  return priceResult(await callLive<Record<string, any>>("predict_image", [[handle_file(file)]]));
 }
 export async function estimateFromImages(files: File[]) {
   if (!files.length || files.length > 8) throw new Error("ارفع من صورة واحدة إلى 8 صور للسيارة نفسها.");
