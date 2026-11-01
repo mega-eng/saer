@@ -537,17 +537,26 @@ function Estimate() {
     .replace("أو جرّب «عيّنة عشوائية» من عيّنات الاختبار.", "");
   const estimateHeroHtml = estimateHeroWithRoadCars().replace("CarInsight AI", APP_NAME);
   useEffect(() => () => previews.forEach((url) => URL.revokeObjectURL(url)), [previews]);
-  const choose = (selected: FileList | null) => {
+  const selectionId = useRef(0);
+  useEffect(() => () => { selectionId.current++; }, []);
+  const choose = async (selected: FileList | null) => {
     if (!selected?.length) return;
-    const chosen = [selected[0]];
-    previews.forEach((url) => URL.revokeObjectURL(url));
-    setFiles(chosen);
-    setPreviews(chosen.map((file) => URL.createObjectURL(file)));
-    setImagePrice(null);
-    setStatus(selected.length > 1 ? "سيتم استخدام الصورة الأولى فقط." : "");
-    if (input.current) input.current.value = "";
+    const file = selected[0], multiple = selected.length > 1;
+    const id = ++selectionId.current;
+    setImagePrice(null); setStatus("");
+    try {
+      const preview = await prepareImage(file);
+      if (id !== selectionId.current) { URL.revokeObjectURL(preview); return; }
+      setFiles([file]); setPreviews([preview]);
+      setStatus(multiple ? "سيتم استخدام الصورة الأولى فقط." : "");
+    } catch (error) {
+      if (id === selectionId.current) {
+        setFiles([]); setPreviews([]);
+        setStatus(error instanceof Error ? error.message : "تعذر فتح الصورة.");
+      }
+    } finally { if (id === selectionId.current && input.current) input.current.value = ""; }
   };
-  const clear = () => { previews.forEach((url) => URL.revokeObjectURL(url)); setFiles([]); setPreviews([]); setImagePrice(null); setStatus(""); };
+  const clear = () => { selectionId.current++; setFiles([]); setPreviews([]); setImagePrice(null); setStatus(""); };
   return (
     <div className="hamoud-app">
     <nav className="hamoud-site-nav" dir="rtl" aria-label={`التنقل في ${APP_NAME}`}>
