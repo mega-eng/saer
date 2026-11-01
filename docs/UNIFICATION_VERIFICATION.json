@@ -200,5 +200,21 @@
     "deployment_performed": false
   },
   "public_live_inference_verified": false,
-  "full_image_dataset_included": false
+  "full_image_dataset_included": false,
+  "main_merge_commit": "f54d5fbf2e87b4dc54788cfe99f8a4bce35676a1",
+  "tested_release_tip": "c586c8caab695f688bb898612ab538ad85c581e6",
+  "main_merge_tree_identical_to_tested_release": true,
+  "original_main_readme_title_and_description_preserved": true,
+  "pr2_after_release_push": {
+    "number": 2,
+    "state": "closed",
+    "merged": true,
+    "merged_at": "2026-11-01T22:29:28Z",
+    "merge_commit_sha": "9c908137870d050ff99db176ec967d4db77a8a8c",
+    "html_url": "https://github.com/rayan18q-bot/saer/pull/2",
+    "base_ref": "release/committee-delivery",
+    "base_sha": "ab664a729d298f8738f95c660bda54a129170ca0",
+    "head_sha": "faea119725db8d87883803f3cf26280ddd641715"
+  },
+  "cleanup_policy": "Delete only release/committee-delivery and fix/frontend-layout after remote main ancestry and ZIP verification; preserve master and original worktree files"
 }
