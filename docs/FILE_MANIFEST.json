@@ -1,6 +1,6 @@
 {
-  "file_count_in_commit": 290,
-  "bytes_without_manifest": 38076131,
+  "file_count_in_commit": 295,
+  "bytes_without_manifest": 38107840,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -15,8 +15,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 3818,
-      "sha256": "fb6748cee9b207b63910fb9b49f04801f99b0b84444e212e592f1ae07b2f7cdd"
+      "bytes": 4889,
+      "sha256": "862b50389844b2c612575aa214a2ede132ea01ed7598217352163e68371ea865"
     },
     {
       "path": "DATA_CONTRACT.md",
@@ -25,8 +25,8 @@
     },
     {
       "path": "DELIVERY.md",
-      "bytes": 15719,
-      "sha256": "58e0b915aa54775b59a1cbb1d53974d20877de4dc760d6e994d39fe046cba0bd"
+      "bytes": 16543,
+      "sha256": "a816b6fdd92beea08a7bab6ddc3c97794a58b965b8f46551a3701a9d021a6c3d"
     },
     {
       "path": "ML_SPEC.md",
@@ -35,13 +35,13 @@
     },
     {
       "path": "PROGRESS.md",
-      "bytes": 19205,
-      "sha256": "c648a4417a5888305e9cd2b75f9739dcaca6ce8cf1dc9a99ad078e5ade36abc5"
+      "bytes": 25044,
+      "sha256": "ce7034f0fb1a254947a7e01ad52123219b7877830e399e3531f57259137b2675"
     },
     {
       "path": "README.md",
-      "bytes": 11705,
-      "sha256": "355a12e4e1a9e837ac295ad31401ca8c23b6da41a81d4d297656382c2c8df5da"
+      "bytes": 11867,
+      "sha256": "84bc3971e7f50a9c9f1923c73cf35f6b2ad4bd0996b02984c8877c013b34b426"
     },
     {
       "path": "REQ.md",
@@ -114,6 +114,16 @@
       "sha256": "f1112ded02ce0169d8e925ee871cca56ec6c809f412bf3b7e9e37f124aefe88f"
     },
     {
+      "path": "docs/BRANCH_NAMING_UPDATE.md",
+      "bytes": 2418,
+      "sha256": "3767e2481a841623487bec3d9db4e60974192535143ebcddce43034f410e036d"
+    },
+    {
+      "path": "docs/FRONTEND_FIX_VALIDATION.md",
+      "bytes": 6923,
+      "sha256": "906843f1625452f0079ec867de41e897f4900ac6c526d23ab1ed3589352254ed"
+    },
+    {
       "path": "docs/GRADIO_VERIFICATION.json",
       "bytes": 804,
       "sha256": "9f49fd00228049ada5546a478883430b3808c92983852f00024fdcf59593a405"
@@ -167,6 +177,11 @@
       "path": "docs/SAMPLE_IMAGES.md",
       "bytes": 1517,
       "sha256": "eec36fa4f15bef59cd96d35713af6b9da2da40458fa23aa5fb74c30f24e5c30a"
+    },
+    {
+      "path": "docs/UNIFICATION_VERIFICATION.json",
+      "bytes": 7216,
+      "sha256": "c0a799d2de513bdb5e9f8fb0ebdf65a3763a42d2454a5f47ed5a3ab7a17edc1f"
     },
     {
       "path": "docs/runtime-assets.json",
@@ -610,8 +625,8 @@
     },
     {
       "path": "frontend/src/ReferenceApp.tsx",
-      "bytes": 78174,
-      "sha256": "ed684a47f5ef124303301f6588c6a1169875836bea7d9fcebe836abcdf99c6c9"
+      "bytes": 79213,
+      "sha256": "3be9d14345f9bc09cc9321662b64bf36ec232dbaf22c573e8a0e9563ad47ce1b"
     },
     {
       "path": "frontend/src/config.ts",
@@ -650,13 +665,13 @@
     },
     {
       "path": "frontend/src/reference.css",
-      "bytes": 46715,
-      "sha256": "59cd079453d18bd015de5c9f431e668d55421d963762199263150210654ea22b"
+      "bytes": 46069,
+      "sha256": "ceb4cde303952cc2ceb9170ece2be37e4da0a4610b3c981b599218d2d222adc8"
     },
     {
       "path": "frontend/src/services/demoService.ts",
-      "bytes": 15644,
-      "sha256": "953a779850b1eb49da39cbc52754cf9521848b8e6fac47256890d8725f0c54ff"
+      "bytes": 15758,
+      "sha256": "0629bdce4ee5cdb08ef97bfc0aef0c50afb03d779736b2c040f18425ad80f8d1"
     },
     {
       "path": "frontend/src/services/imageUpload.ts",
@@ -1297,6 +1312,16 @@
       "path": "scripts/visual_fusion_round.py",
       "bytes": 21662,
       "sha256": "0f674e79abc0a8266b0c1c139b1cecd296f5b2d9785da3c086404949c69f2c29"
+    },
+    {
+      "path": "tests/frontend-behavior.mjs",
+      "bytes": 5260,
+      "sha256": "53003ad40032e7433044ef2986c239f5b212f673712c6d075d60e65d2869e699"
+    },
+    {
+      "path": "tests/frontend-harness.html",
+      "bytes": 1489,
+      "sha256": "a70521ba2a53c132a6a793031687d54a97b6195401678538c6f6298b6715c9fd"
     },
     {
       "path": "tests/test_brand_final_round.py",
