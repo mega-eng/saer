@@ -1,7 +1,7 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-APP_NAME = "سياراد"
+APP_NAME = "سعّر"
 DB_DIR = ROOT / "backend" / "instance"
 DB_PATH = DB_DIR / "siarad.sqlite"
 LISTINGS_CSV = ROOT / "data" / "processed" / "listings.csv"

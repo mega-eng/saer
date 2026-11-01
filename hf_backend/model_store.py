@@ -6,7 +6,7 @@ from pathlib import Path
 
 from huggingface_hub import snapshot_download
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("SAER_APP_ROOT", Path(__file__).resolve().parent)).resolve()
 PUBLIC_CLIP_CONFIG_REVISION = "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
 PUBLIC_CLIP_WEIGHTS_REVISION = "c237dc49a33fc61debc9276459120b7eac67e7ef"
 PRIVATE_ASSET_PATTERNS = [

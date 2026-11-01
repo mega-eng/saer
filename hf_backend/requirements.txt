@@ -1,13 +1,19 @@
-# تدير المنصة gradio وspaces في Space؛ نثبت huggingface_hub أدناه لتوافق Transformers.
+# تشغيل خادم النماذج؛ نموذج الصورة يحتاج عاملًا منفصلًا بإصدار التدريب.
+gradio==5.49.1
+gradio-client==1.13.3
 numpy==2.5.3
 scipy==1.18.1
 scikit-learn==1.9.1
-pandas==3.1.0
+pandas==2.3.3
 joblib==1.6.0
-Pillow==12.3.0
+Pillow==11.3.0
 torch==2.8.0
 torchvision==0.23.0
 transformers==4.45.2
 safetensors==0.8.0
 huggingface_hub==0.36.2
 opencv-python-headless==4.14.0.94
+
+pydantic==2.11.10
+starlette==0.52.1
+fastapi==0.162.0

@@ -54,3 +54,9 @@ service-account*.json
 
 # لا تُستثنى data/ أو models/ أو outputs/ أو امتدادات الأوزان والبيانات هنا.
 # ظهورها في git status ليس إذناً برفعها؛ يجب مراجعة الأحجام والخصوصية قبل staging.
+
+# بيئات وكاش التحقق المحلي
+.runtime/
+.runtime-cache/
+
+hf_backend/outputs/clip_identity_20261027_v1/checkpoint_compatibility.json

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import os
+import subprocess
+import importlib.metadata
 import json
 import sys
 import threading
@@ -91,6 +94,23 @@ def predict_image_price(paths: Path | list[Path], digest: str) -> dict:
     if cached is not None:
         return {**cached, "من_ذاكرة_مؤقتة": True}
     image_paths = [paths] if isinstance(paths, Path) else paths
+    if os.environ.get("SAER_IMAGE_PYTHON"):
+        env = os.environ.copy()
+        if os.environ.get("SAER_IMAGE_PYTHONPATH"):
+            env["PYTHONPATH"] = os.environ["SAER_IMAGE_PYTHONPATH"]
+        else:
+            env.pop("PYTHONPATH", None)
+        worker = ROOT / "scripts" / "siarad_price_worker.py"
+        with _lock:
+            completed = subprocess.run([os.environ["SAER_IMAGE_PYTHON"], str(worker), *map(str, image_paths)],
+                cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900)
+        if completed.returncode:
+            raise RuntimeError("تعذر تشغيل عامل نموذج الصورة: " + completed.stderr[-500:])
+        result = json.loads(completed.stdout.strip().splitlines()[-1])
+        _save_cache(IMAGE_PRICE_CACHE_DIR, digest, result)
+        return {**result, "من_ذاكرة_مؤقتة": False}
+    if importlib.metadata.version("scikit-learn") != "1.6.1":
+        raise RuntimeError("نموذج الصورة يتطلب بيئة scikit-learn 1.6.1 منفصلة؛ اضبط SAER_IMAGE_PYTHON")
     try:
         model_path = ROOT / "models" / "image_price_hamoud_20261028"
         if str(model_path) not in sys.path:

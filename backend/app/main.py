@@ -82,6 +82,7 @@ def _valid_image_path(relative_path: str) -> Path:
     path = (ROOT / relative_path).resolve()
     allowed_roots = (
         (ROOT / "data" / "raw").resolve(),
+        (ROOT / "frontend" / "public" / "demo" / "img").resolve(),
         (ROOT / "data" / "recovery" / "images").resolve(),
         (ROOT / "data" / "recovery" / "residual_images").resolve(),
     )
@@ -334,7 +335,7 @@ def image_file(image_uid: str, session: Session = Depends(get_session)) -> FileR
     image = session.get(ImageAsset, image_uid)
     if not image or not image.valid: raise HTTPException(404, "الصورة غير متوفرة")
     path = _valid_image_path(image.relative_path)
-    return FileResponse(path, headers={"Cache-Control": "public, max-age=86400"})
+    return FileResponse(path, media_type={".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}.get(path.suffix.lower(), "application/octet-stream"), headers={"Cache-Control": "public, max-age=86400"})
 
 
 @app.get("/api/featured")

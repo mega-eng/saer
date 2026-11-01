@@ -44,9 +44,9 @@ def tabular_runtime():
         scripts = str(ROOT / "scripts")
         if scripts not in sys.path:
             sys.path.insert(0, scripts)
-        from car_model_runtime import CarModelRuntime
+        from backend.app.runtime_bridge import hosted_runtime
 
-        _tabular_runtime = CarModelRuntime()
+        _tabular_runtime = hosted_runtime().HostedTabularRuntime()
     return _tabular_runtime
 
 
@@ -56,9 +56,9 @@ def identity_runtime():
         scripts = str(ROOT / "scripts")
         if scripts not in sys.path:
             sys.path.insert(0, scripts)
-        from generalization_identity_runtime_20261028 import ApprovedIdentityRuntime
+        from backend.app.runtime_bridge import hosted_runtime
 
-        _identity_runtime = ApprovedIdentityRuntime()
+        _identity_runtime = hosted_runtime().HostedIdentityRuntime()
     return _identity_runtime
 
 
@@ -90,6 +90,12 @@ def predict_identity(path: Path, digest: str) -> dict:
 
 
 def _python_for_image_price() -> Path:
+    configured = os.environ.get("SAER_IMAGE_PYTHON", "").strip()
+    if configured:
+        path = Path(configured)
+        if not path.is_file():
+            raise RuntimeError("مسار SAER_IMAGE_PYTHON غير صالح")
+        return path
     candidates = [
         ROOT / "tmp" / "price_check_env" / "Scripts" / "python.exe",
         ROOT / ".venv" / "Scripts" / "python.exe",
@@ -108,6 +114,10 @@ def predict_image_price(paths: Path | list[Path], digest: str) -> dict:
     image_paths = [paths] if isinstance(paths, Path) else paths
     command = [str(_python_for_image_price()), str(worker), *(str(path) for path in image_paths)]
     env = os.environ.copy()
+    if os.environ.get("SAER_IMAGE_PYTHONPATH"):
+        env["PYTHONPATH"] = os.environ["SAER_IMAGE_PYTHONPATH"]
+    elif os.environ.get("SAER_IMAGE_PYTHON"):
+        env.pop("PYTHONPATH", None)
     env.setdefault("OMP_NUM_THREADS", "4")
     env.setdefault("MKL_NUM_THREADS", "4")
     env.setdefault("TOKENIZERS_PARALLELISM", "false")

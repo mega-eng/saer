@@ -1,6 +1,10 @@
 """عامل محلي يستدعي نموذج حمود المعتمد دون خلطه بمسار السعر الجدولي."""
 from __future__ import annotations
 
+import importlib.metadata
+if importlib.metadata.version("scikit-learn") != "1.6.1":
+    raise RuntimeError("نموذج الصورة يتطلب scikit-learn==1.6.1؛ حدد بيئة SAER_IMAGE_PYTHON المناسبة")
+
 import contextlib
 import io
 import json
