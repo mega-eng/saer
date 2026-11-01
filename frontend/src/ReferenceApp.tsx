@@ -1055,13 +1055,24 @@ function Picker({
   onClose: () => void;
 }) {
   const [q, setQ] = useState(""), [items, setItems] = useState<Listing[]>([]), [offset, setOffset] = useState(0), [total, setTotal] = useState(0), [loading, setLoading] = useState(false);
+  const requestId = useRef(0);
+  const [error, setError] = useState("");
   const load = async (nextOffset: number, query: string) => {
-    setLoading(true);
-    try { const page = await uiService.listingsPage({query}, nextOffset, 30); setItems((old) => nextOffset ? [...old, ...page.items] : page.items); setTotal(page.total); setOffset(nextOffset); }
-    finally { setLoading(false); }
+    const id = ++requestId.current;
+    setLoading(true); setError("");
+    try {
+      const page = await uiService.listingsPage({query}, nextOffset, 30);
+      if (id !== requestId.current) return;
+      setItems(old => nextOffset ? [...old, ...page.items] : page.items);
+      setTotal(page.total); setOffset(nextOffset);
+    } catch {
+      if (id === requestId.current) setError("تعذر تحميل الإعلانات. حاول مرة أخرى.");
+    } finally { if (id === requestId.current) setLoading(false); }
   };
-  useEffect(() => { void load(0, ""); }, []);
-  useEffect(() => { const timer = window.setTimeout(() => void load(0, q), 250); return () => window.clearTimeout(timer); }, [q]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => void load(0, q), 250);
+    return () => { window.clearTimeout(timer); requestId.current++; };
+  }, [q]);
   return (
     <Dialog label="اختر إعلانًا" onClose={onClose}>
       <input
@@ -1071,6 +1082,7 @@ function Picker({
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
+      {error && <p role="alert">{error}</p>}
       <p className="history-note">{number(total)} إعلان مسجل في قاعدة المشروع</p>
       <div className="picker-list">
         {items.filter(v => v.id !== excludeId)
@@ -1285,19 +1297,22 @@ function Supplemental({ page, meta }: { page: "market" | "browse"; meta: Dataset
     [offset, setOffset] = useState(0), [market, setMarket] = useState<MarketData | null>(null),
     [marketTab, setMarketTab] = useState("overview"),
     [loading, setLoading] = useState(false), [error, setError] = useState("");
+  const requestId = useRef(0);
   const loadListings = async (next = 0) => {
+    const id = ++requestId.current;
     setLoading(true); setError("");
-    try { const result = await uiService.listingsPage(filter, next, 24); setItems(result.items); setTotal(result.total); setOffset(next); }
-    catch (e) { setError(e instanceof Error ? e.message : "تعذر تحميل الإعلانات."); }
-    finally { setLoading(false); }
+    try { const result = await uiService.listingsPage(filter, next, 24); if (id !== requestId.current) return; setItems(result.items); setTotal(result.total); setOffset(next); }
+    catch (e) { if (id === requestId.current) setError(e instanceof Error ? e.message : "تعذر تحميل الإعلانات."); }
+    finally { if (id === requestId.current) setLoading(false); }
   };
   const loadMarket = async (selected: Filters = filter) => {
+    const id = ++requestId.current;
     setLoading(true); setError("");
-    try { setMarket(await uiService.market({make:selected.make, model:selected.model, year:selected.year, city:selected.city, min:selected.min, max:selected.max})); }
-    catch (e) { setError(e instanceof Error ? e.message : "تعذر تحميل تحليل السوق."); }
-    finally { setLoading(false); }
+    try { const result = await uiService.market({make:selected.make, model:selected.model, year:selected.year, city:selected.city, min:selected.min, max:selected.max}); if (id === requestId.current) setMarket(result); }
+    catch (e) { if (id === requestId.current) setError(e instanceof Error ? e.message : "تعذر تحميل تحليل السوق."); }
+    finally { if (id === requestId.current) setLoading(false); }
   };
-  useEffect(() => { if (page === "browse") void loadListings(0); else void loadMarket(); }, [page]);
+  useEffect(() => { if (page === "browse") void loadListings(0); else void loadMarket(); return () => { requestId.current++; }; }, [page]);
   const set = (key: keyof Filters) => (value: string) => setFilter((f) => ({...f,[key]:value,...(key === "make" ? {model:""} : {})}));
   const filterFields = <>
     <label>الشركة<select value={filter.make || ""} onChange={(e)=>set("make")(e.target.value)}><option value="">كل الشركات</option>{(meta?.makes||[]).map(m=><option key={m} value={m}>{ar(m)}</option>)}</select></label>
