@@ -393,11 +393,6 @@ function Crumb({ page, text }: { page: Page; text: string }) {
 }
 function Home() {
   const links = [
-    {label:"الملف الشخصي",href:"/login",x:3.1,y:2.6,w:17.6,h:6.8},
-    {label:"عروض السيارات",href:"/listings",x:22.8,y:2.6,w:11.5,h:6.8},
-    {label:"السوق",href:"/market",x:35.0,y:2.6,w:8.8,h:6.8},
-    {label:"خدماتنا",href:"/",x:58.3,y:2.6,w:8.5,h:6.8},
-    {label:"الرئيسية",href:"/",x:67.1,y:2.6,w:8.8,h:6.8},
     {label:"أفضل 5 سيارات حسب ميزانيتك",href:"/budget",x:3.1,y:28.1,w:30.8,h:23.0},
     {label:"بكم أبيع سيارتي؟",href:"/sell",x:35.1,y:28.1,w:30.4,h:23.0},
     {label:"تقدير سعر السيارة من الصورة",href:"/estimate-from-image",x:66.6,y:28.1,w:30.6,h:23.0},
@@ -427,11 +422,6 @@ function Home() {
           style={{left:`${x}%`,top:`${y}%`,width:`${w}%`,height:`${h}%`}}
           onClick={event=>{event.preventDefault();go(href);}} />
       ))}
-      <a className="home-screenshot-compare-link" href="/compare" aria-label="مقارنة السيارات"
-        onClick={event=>{event.preventDefault();go('/compare');}}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14.5 5.1 9a2 2 0 0 1 1.9-1.3h9.9a2 2 0 0 1 1.9 1.3l2.1 5.5v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM4 14.5h16M7.5 17.5h.01M16.5 17.5h.01M7 11h10"/></svg>
-        <span>مقارنة السيارات</span>
-      </a>
     </main>
   );
 }

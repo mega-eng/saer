@@ -753,10 +753,6 @@ a {
 .home-screenshot-page>.home-estimate-feature-user {z-index:1;left:66.5%;right:auto;top:28.1%;bottom:auto;width:30.8%;height:23%;object-fit:fill;object-position:center;user-select:none;pointer-events:none;}
 .home-screenshot-hotspot {position:absolute;z-index:2;display:block;border:0;background:transparent;}
 .home-screenshot-hotspot:focus-visible {outline:2px solid #16d9ff;outline-offset:-3px;border-radius:10px;}
-.home-screenshot-compare-link {position:absolute;z-index:3;left:44.6%;top:2.6%;width:13.4%;height:6.8%;display:flex;align-items:center;justify-content:center;gap:8px;color:#eaf6ff;text-decoration:none;font-size:clamp(10px,1.1vw,16px);font-weight:700;white-space:nowrap;}
-.home-screenshot-compare-link svg {width:clamp(15px,1.8vw,24px);height:clamp(15px,1.8vw,24px);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;}
-.home-screenshot-compare-link:hover {color:#19ddff;text-shadow:0 0 10px #13dfff99;}
-.home-screenshot-compare-link:focus-visible {outline:2px solid #16d9ff;border-radius:8px;}
 .login-card-overlay {position:absolute;left:66.7%;top:20.3%;width:18.8%;height:32.3%;box-sizing:border-box;padding:1.05% 1.05% 0.7%;display:flex;flex-direction:column;gap:2.7%;overflow:auto;border:1px solid #82cfff8c;border-radius:1.2vw;background:linear-gradient(145deg,#122b47ed,#0a1c34f2);box-shadow:0 8px 28px #0007,inset 0 1px #ffffff1c;color:#fff;backdrop-filter:blur(8px);font-size:clamp(10px,1.15vw,16px);}
 .login-card-overlay h1 {flex:none;margin:0 0 1%;text-align:center;font-size:1.12em;line-height:1.35;font-weight:800;}
 .login-card-overlay form {display:grid;gap:3.2%;min-height:0;}
