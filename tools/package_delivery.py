@@ -24,7 +24,7 @@ def main():
         raise RuntimeError("احفظ الملفات في commit نظيف قبل التحزيم")
     commit = git("rev-parse", "HEAD").decode().strip()
     branch = git("branch", "--show-current").decode().strip()
-    contents = git("archive", "--format=zip", "HEAD")
+    contents = git("-c", "core.autocrlf=false", "archive", "--format=zip", "HEAD")
     source = zipfile.ZipFile(io.BytesIO(contents))
     expected = json.loads(source.read("docs/FILE_MANIFEST.json"))
     entries = [item for item in source.infolist() if not item.is_dir()]

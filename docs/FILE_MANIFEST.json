@@ -1,6 +1,6 @@
 {
   "file_count_in_commit": 289,
-  "bytes_without_manifest": 38045794,
+  "bytes_without_manifest": 38045823,
   "note": "يستثني البيان حجمه وبصمته؛ البصمات من ملفات Git المجهزة دون البيئات والكاش والناتج المبني.",
   "files": [
     {
@@ -1420,8 +1420,8 @@
     },
     {
       "path": "tools/package_delivery.py",
-      "bytes": 3827,
-      "sha256": "eeffbbc027ad121743c6a5db19e67daa9a6f4b71cce5d167a0e7131e827bcf6e"
+      "bytes": 3856,
+      "sha256": "c720100096909a5c405617a6b3357166340646d536996279014370722f4df3c8"
     },
     {
       "path": "tools/package_kaggle.py",
