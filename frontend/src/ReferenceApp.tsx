@@ -97,6 +97,8 @@ function Frame({ page, children }: { page: Page; children: ReactNode }) {
     return () => obs.disconnect();
   }, [size.width]);
   return (
+    <>
+    <div className="supplemental-nav"><Navbar page={page} overlay /></div>
     <div
       ref={host}
       className="frame-host"
@@ -121,6 +123,7 @@ function Frame({ page, children }: { page: Page; children: ReactNode }) {
         {children}
       </main>
     </div>
+    </>
   );
 }
 function GlassCard({
@@ -270,7 +273,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
   }, [guestMenuOpen, editingGuestName]);
   const saveGuestName = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const firstName = editedName.trim().split(/\\s+/)[0];
+    const firstName = editedName.trim().split(/\s+/)[0];
     if (!firstName) return;
     sessionStorage.setItem("saer_guest_name", firstName);
     window.dispatchEvent(new Event("saer-guest-name"));
@@ -292,7 +295,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
   const currentPath = location.pathname;
   const frameHeader = !home && !overlay && page !== "market" && page !== "browse";
   const headerStyle: CSSProperties | undefined = overlay ? {
-    left: "16px", top: "14px", width: "calc(100vw - 32px)", height: "80px",
+    position: "relative", transform: "none",
   } : frameHeader ? {
     left: `${16 / viewportScale}px`, top: `${14 / viewportScale}px`,
     width: `${window.innerWidth - 32}px`, height: "80px",
@@ -317,7 +320,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
           <button type="button" role="menuitem" onClick={() => { setEditedName(guestName); setGuestMenuOpen(false); setEditingGuestName(true); }}>تعديل الاسم</button>
           <button type="button" role="menuitem" onClick={logoutGuest}>تسجيل الخروج</button>
         </div>}
-        {editingGuestName && <div className="guest-name-backdrop" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) setEditingGuestName(false); }}>
+        {editingGuestName && createPortal(<div className="guest-name-backdrop" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) setEditingGuestName(false); }}>
           <form className="guest-name-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-guest-name-title" onSubmit={saveGuestName}>
             <h1 id="edit-guest-name-title">تعديل الاسم</h1>
             <label htmlFor="edit-guest-first-name">الاسم الأول</label>
@@ -325,7 +328,7 @@ function Navbar({ page, home = false, overlay = false }: { page: Page | "market"
             <button type="submit">حفظ الاسم</button>
             <button className="guest-name-cancel" type="button" onClick={() => setEditingGuestName(false)}>إلغاء</button>
           </form>
-        </div>}
+        </div>, document.body)}
       </div>
     </header>
   );
@@ -390,11 +393,6 @@ function Crumb({ page, text }: { page: Page; text: string }) {
 }
 function Home() {
   const links = [
-    {label:"الملف الشخصي",href:"/login",x:3.1,y:2.6,w:17.6,h:6.8},
-    {label:"عروض السيارات",href:"/listings",x:22.8,y:2.6,w:11.5,h:6.8},
-    {label:"السوق",href:"/market",x:35.0,y:2.6,w:8.8,h:6.8},
-    {label:"خدماتنا",href:"/",x:58.3,y:2.6,w:8.5,h:6.8},
-    {label:"الرئيسية",href:"/",x:67.1,y:2.6,w:8.8,h:6.8},
     {label:"أفضل 5 سيارات حسب ميزانيتك",href:"/budget",x:3.1,y:28.1,w:30.8,h:23.0},
     {label:"بكم أبيع سيارتي؟",href:"/sell",x:35.1,y:28.1,w:30.4,h:23.0},
     {label:"تقدير سعر السيارة من الصورة",href:"/estimate-from-image",x:66.6,y:28.1,w:30.6,h:23.0},
@@ -424,11 +422,6 @@ function Home() {
           style={{left:`${x}%`,top:`${y}%`,width:`${w}%`,height:`${h}%`}}
           onClick={event=>{event.preventDefault();go(href);}} />
       ))}
-      <a className="home-screenshot-compare-link" href="/compare" aria-label="مقارنة السيارات"
-        onClick={event=>{event.preventDefault();go('/compare');}}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14.5 5.1 9a2 2 0 0 1 1.9-1.3h9.9a2 2 0 0 1 1.9 1.3l2.1 5.5v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM4 14.5h16M7.5 17.5h.01M16.5 17.5h.01M7 11h10"/></svg>
-        <span>مقارنة السيارات</span>
-      </a>
     </main>
   );
 }
@@ -441,7 +434,6 @@ function Sell({
 }) {
   return (
     <Frame page="sell">
-      <Navbar page="sell" />
       <StaticArt
         page="sell"
         id="heading"
@@ -545,22 +537,31 @@ function Estimate() {
     .replace("أو جرّب «عيّنة عشوائية» من عيّنات الاختبار.", "");
   const estimateHeroHtml = estimateHeroWithRoadCars().replace("CarInsight AI", APP_NAME);
   useEffect(() => () => previews.forEach((url) => URL.revokeObjectURL(url)), [previews]);
-  const choose = (selected: FileList | null) => {
+  const selectionId = useRef(0);
+  useEffect(() => () => { selectionId.current++; }, []);
+  const choose = async (selected: FileList | null) => {
     if (!selected?.length) return;
-    const chosen = [selected[0]];
-    previews.forEach((url) => URL.revokeObjectURL(url));
-    setFiles(chosen);
-    setPreviews(chosen.map((file) => URL.createObjectURL(file)));
-    setImagePrice(null);
-    setStatus(selected.length > 1 ? "سيتم استخدام الصورة الأولى فقط." : "");
-    if (input.current) input.current.value = "";
+    const file = selected[0], multiple = selected.length > 1;
+    const id = ++selectionId.current;
+    setImagePrice(null); setStatus("");
+    try {
+      const preview = await prepareImage(file);
+      if (id !== selectionId.current) { URL.revokeObjectURL(preview); return; }
+      setFiles([file]); setPreviews([preview]);
+      setStatus(multiple ? "سيتم استخدام الصورة الأولى فقط." : "");
+    } catch (error) {
+      if (id === selectionId.current) {
+        setFiles([]); setPreviews([]);
+        setStatus(error instanceof Error ? error.message : "تعذر فتح الصورة.");
+      }
+    } finally { if (id === selectionId.current && input.current) input.current.value = ""; }
   };
-  const clear = () => { previews.forEach((url) => URL.revokeObjectURL(url)); setFiles([]); setPreviews([]); setImagePrice(null); setStatus(""); };
+  const clear = () => { selectionId.current++; setFiles([]); setPreviews([]); setImagePrice(null); setStatus(""); };
   return (
     <div className="hamoud-app">
     <nav className="hamoud-site-nav" dir="rtl" aria-label={`التنقل في ${APP_NAME}`}>
-      <a className="hamoud-brand-link" href="/" aria-label={APP_NAME}><img src={APP_LOGO} alt={APP_NAME}/></a>
-      <a href="/">الرئيسية</a><a href="/sell">بكم أبيع سيارتي؟</a><a className="active" href="/estimate-from-image">تقدير السعر من الصورة</a><a href="/budget">أفضل 5 سيارات</a><a href="/compare">مقارنة السيارات</a><a href="/market">تحليل السوق</a><a href="/listings">الإعلانات</a>
+      <a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} className="hamoud-brand-link" href="/" aria-label={APP_NAME}><img src={APP_LOGO} alt={APP_NAME}/></a>
+      <a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/">الرئيسية</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/sell">بكم أبيع سيارتي؟</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} className="active" href="/estimate-from-image">تقدير السعر من الصورة</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/budget">أفضل 5 سيارات</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/compare">مقارنة السيارات</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/market">تحليل السوق</a><a onClick={event => { event.preventDefault(); go(event.currentTarget.getAttribute("href")!); }} href="/listings">الإعلانات</a>
     </nav>
     <main className={`hamoud-live-page gradio-container ${nightMode ? "night" : ""}`} dir="rtl">
       <FallingNightFlowers />
@@ -706,7 +707,6 @@ function Details({ preview, manual, imageFile, meta, pricePairs, onReplacePhoto 
     }));
   return (
     <Frame page="details">
-      <Navbar page="details" />
       <StaticArt
         page="details"
         id="heading"
@@ -942,7 +942,6 @@ function Budget({ meta }: { meta: DatasetMeta | null }) {
   return (
     <Frame page="budget">
       <Feedback text={message} close={()=>setMessage("")}/>
-      <Navbar page="budget" />
       <StaticArt
         page="budget"
         id="heading"
@@ -1065,13 +1064,24 @@ function Picker({
   onClose: () => void;
 }) {
   const [q, setQ] = useState(""), [items, setItems] = useState<Listing[]>([]), [offset, setOffset] = useState(0), [total, setTotal] = useState(0), [loading, setLoading] = useState(false);
+  const requestId = useRef(0);
+  const [error, setError] = useState("");
   const load = async (nextOffset: number, query: string) => {
-    setLoading(true);
-    try { const page = await uiService.listingsPage({query}, nextOffset, 30); setItems((old) => nextOffset ? [...old, ...page.items] : page.items); setTotal(page.total); setOffset(nextOffset); }
-    finally { setLoading(false); }
+    const id = ++requestId.current;
+    setLoading(true); setError("");
+    try {
+      const page = await uiService.listingsPage({query}, nextOffset, 30);
+      if (id !== requestId.current) return;
+      setItems(old => nextOffset ? [...old, ...page.items] : page.items);
+      setTotal(page.total); setOffset(nextOffset);
+    } catch {
+      if (id === requestId.current) setError("تعذر تحميل الإعلانات. حاول مرة أخرى.");
+    } finally { if (id === requestId.current) setLoading(false); }
   };
-  useEffect(() => { void load(0, ""); }, []);
-  useEffect(() => { const timer = window.setTimeout(() => void load(0, q), 250); return () => window.clearTimeout(timer); }, [q]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => void load(0, q), 250);
+    return () => { window.clearTimeout(timer); requestId.current++; };
+  }, [q]);
   return (
     <Dialog label="اختر إعلانًا" onClose={onClose}>
       <input
@@ -1081,6 +1091,7 @@ function Picker({
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
+      {error && <p role="alert">{error}</p>}
       <p className="history-note">{number(total)} إعلان مسجل في قاعدة المشروع</p>
       <div className="picker-list">
         {items.filter(v => v.id !== excludeId)
@@ -1119,7 +1130,6 @@ function Compare() {
   ];
   return (
     <Frame page="compare">
-      <Navbar page="compare" />
       <StaticArt
         page="compare"
         id="heading"
@@ -1296,19 +1306,22 @@ function Supplemental({ page, meta }: { page: "market" | "browse"; meta: Dataset
     [offset, setOffset] = useState(0), [market, setMarket] = useState<MarketData | null>(null),
     [marketTab, setMarketTab] = useState("overview"),
     [loading, setLoading] = useState(false), [error, setError] = useState("");
+  const requestId = useRef(0);
   const loadListings = async (next = 0) => {
+    const id = ++requestId.current;
     setLoading(true); setError("");
-    try { const result = await uiService.listingsPage(filter, next, 24); setItems(result.items); setTotal(result.total); setOffset(next); }
-    catch (e) { setError(e instanceof Error ? e.message : "تعذر تحميل الإعلانات."); }
-    finally { setLoading(false); }
+    try { const result = await uiService.listingsPage(filter, next, 24); if (id !== requestId.current) return; setItems(result.items); setTotal(result.total); setOffset(next); }
+    catch (e) { if (id === requestId.current) setError(e instanceof Error ? e.message : "تعذر تحميل الإعلانات."); }
+    finally { if (id === requestId.current) setLoading(false); }
   };
   const loadMarket = async (selected: Filters = filter) => {
+    const id = ++requestId.current;
     setLoading(true); setError("");
-    try { setMarket(await uiService.market({make:selected.make, model:selected.model, year:selected.year, city:selected.city, min:selected.min, max:selected.max})); }
-    catch (e) { setError(e instanceof Error ? e.message : "تعذر تحميل تحليل السوق."); }
-    finally { setLoading(false); }
+    try { const result = await uiService.market({make:selected.make, model:selected.model, year:selected.year, city:selected.city, min:selected.min, max:selected.max}); if (id === requestId.current) setMarket(result); }
+    catch (e) { if (id === requestId.current) setError(e instanceof Error ? e.message : "تعذر تحميل تحليل السوق."); }
+    finally { if (id === requestId.current) setLoading(false); }
   };
-  useEffect(() => { if (page === "browse") void loadListings(0); else void loadMarket(); }, [page]);
+  useEffect(() => { if (page === "browse") void loadListings(0); else void loadMarket(); return () => { requestId.current++; }; }, [page]);
   const set = (key: keyof Filters) => (value: string) => setFilter((f) => ({...f,[key]:value,...(key === "make" ? {model:""} : {})}));
   const filterFields = <>
     <label>الشركة<select value={filter.make || ""} onChange={(e)=>set("make")(e.target.value)}><option value="">كل الشركات</option>{(meta?.makes||[]).map(m=><option key={m} value={m}>{ar(m)}</option>)}</select></label>
