@@ -58,13 +58,15 @@ if _startup_error is None:
 
 
 def _valid_image_path(value: str | None) -> Path:
+    if isinstance(value, (list, tuple)):
+        raise ValueError("ارفع صورة واحدة فقط للسيارة")
+    if not isinstance(value, (str, Path)) or not value:
+        raise ValueError("اختر صورة السيارة أولًا")
     if _startup_error:
         raise RuntimeError(_startup_error)
-    if not value:
-        raise ValueError("ارفع صورة سيارة أولاً")
     path = Path(value)
-    if not path.is_file() or path.stat().st_size > 15 * 1024 * 1024:
-        raise ValueError("الصورة مفقودة أو حجمها يتجاوز 15 ميجابايت")
+    if not path.is_file() or not 0 < path.stat().st_size <= 12 * 1024 * 1024:
+        raise ValueError("الصورة مفقودة أو فارغة أو حجمها يتجاوز 12 ميجابايت")
     from PIL import Image, UnidentifiedImageError
 
     try:
@@ -86,8 +88,8 @@ def identify_vehicle(upload: str | None) -> dict[str, Any]:
 
 def estimate_image_price(upload: str | list[str] | None) -> dict[str, Any]:
     paths = upload if isinstance(upload, list) else [upload]
-    if not 1 <= len(paths) <= 8:
-        raise ValueError("ارفع من صورة واحدة إلى 8 صور للسيارة نفسها")
+    if len(paths) != 1:
+        raise ValueError("ارفع صورة واحدة فقط للسيارة")
     checked = [_valid_image_path(path) for path in paths]
     digest = hashlib.sha256("|".join(services.file_sha256(path) for path in checked).encode()).hexdigest()
     result = services.predict_image_price(checked, digest)
@@ -131,7 +133,7 @@ with gr.Blocks(title="سعّر — خدمة التقدير الحي") as demo:
         identity_result = gr.JSON(label="النتيجة")
         identity_button.click(predict_identity, identity_file, identity_result, api_name="identify_vehicle")
     with gr.Tab("السعر من الصورة"):
-        price_files = gr.File(label="صورة أو صور السيارة نفسها", file_types=[".jpg", ".jpeg", ".png", ".webp"], file_count="multiple", type="filepath")
+        price_files = gr.File(label="صورة السيارة", file_types=[".jpg", ".jpeg", ".png", ".webp"], file_count="single", type="filepath")
         price_button = gr.Button("قدّر السعر")
         price_result = gr.JSON(label="النتيجة")
         price_button.click(predict_image, price_files, price_result, api_name="predict_image")

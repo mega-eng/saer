@@ -541,14 +541,15 @@ function Estimate() {
   useEffect(() => () => { selectionId.current++; }, []);
   const choose = async (selected: FileList | null) => {
     if (!selected?.length) return;
-    const file = selected[0], multiple = selected.length > 1;
+    if (selected.length !== 1) { setStatus("ارفع صورة واحدة فقط للسيارة."); if (input.current) input.current.value = ""; return; }
+    const file = selected[0];
     const id = ++selectionId.current;
     setImagePrice(null); setStatus("");
     try {
       const preview = await prepareImage(file);
       if (id !== selectionId.current) { URL.revokeObjectURL(preview); return; }
       setFiles([file]); setPreviews([preview]);
-      setStatus(multiple ? "سيتم استخدام الصورة الأولى فقط." : "");
+      setStatus("");
     } catch (error) {
       if (id === selectionId.current) {
         setFiles([]); setPreviews([]);
@@ -604,10 +605,11 @@ function Estimate() {
           </label>
           {status && <p className="hamoud-live-error" role="status">{status}</p>}
           <button className="primary hamoud-live-estimate" onClick={async () => {
-            if (!files.length) { input.current?.click(); return; }
+            if (!files.length) { setStatus("اختر صورة السيارة أولًا."); return; }
+            const requestSelection = selectionId.current;
             setEstimating(true); setStatus(""); setImagePrice(null);
-            try { setImagePrice({ ...await uiService.estimateFromImage(files[0]), imageCount: 1 }); }
-            catch (error) { setStatus(error instanceof Error ? error.message : "تعذر تقدير السعر."); }
+            try { const result = await uiService.estimateFromImage(files[0]); if (requestSelection === selectionId.current) setImagePrice({ ...result, imageCount: 1 }); }
+            catch (error) { if (requestSelection === selectionId.current) setStatus(error instanceof Error ? error.message : "تعذر تقدير السعر."); }
             finally { setEstimating(false); }
           }} disabled={estimating}>{estimating ? "جارٍ التقدير…" : "🔍 قدّر السعر"}</button>
           <div className="hamoud-live-actions">

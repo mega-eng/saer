@@ -69,10 +69,38 @@ test('prepareImage validates MIME, size and decoding and revokes failed URL', as
   } finally {globalThis.Image=oldImage;globalThis.URL=oldURL;}
 });
 
-test('choose uses first file and revokes a superseded asynchronous preview', async () => {
+test('choose rejects multiple files, allows retry and revokes a superseded asynchronous preview', async () => {
   let calls=0,files,previews,status;const a=deferred(),b=deferred(),revoked=[];
   const context={selectionId:{current:0},prepareImage:()=> (++calls===1?a:b).promise,URL:{revokeObjectURL:u=>revoked.push(u)},setImagePrice:()=>{},setStatus:v=>status=v,setFiles:v=>files=v,setPreviews:v=>previews=v,input:{current:null}};
   const choose=action('const choose = async','selected',context);
-  const p=choose(['first','unused']),q=choose(['new','unused']);b.resolve('blob:new');await q;a.resolve('blob:old');await p;
-  assert.deepEqual(files,['new']);assert.deepEqual(previews,['blob:new']);assert.deepEqual(revoked,['blob:old']);assert.match(status,/الصورة الأولى/);
+  await choose(['first','unused']); assert.equal(calls,0); assert.match(status,/صورة واحدة فقط/);
+  const p=choose(['first']),q=choose(['new']);b.resolve('blob:new');await q;a.resolve('blob:old');await p;
+  assert.deepEqual(files,['new']);assert.deepEqual(previews,['blob:new']);assert.deepEqual(revoked,['blob:old']);assert.equal(status,'');
+});
+
+test('image request follows single/ListFiles schema and always sends one image', async () => {
+  const oldClient=globalThis.uploadClient;
+  const sent=[];
+  const client={config:{dependencies:[{api_name:'predict_image',inputs:[8]}],components:[{id:8,type:'file',props:{file_count:'multiple'}}]},predict:async(name,args)=>{sent.push({name,args});return {data:[{price_sar:123}]};}};
+  globalThis.uploadClient=client;
+  try {
+    const service=await moduleFrom('../frontend/src/services/demoService.ts', `
+      const Client={connect:async()=>globalThis.uploadClient};
+      const resolveApiBaseUrl=async()=> 'https://example.test';
+      const validateImage=file=>{if(!file)throw Error('اختر صورة السيارة أولًا.');};
+      const handle_file=file=>({path:file.name,meta:{_type:'gradio.FileData'}});
+    `);
+    const file={name:'one.webp'};
+    await service.estimateFromImage(file);
+    assert.equal(sent[0].args.length,1);assert.equal(sent[0].args[0].length,1);
+    assert.equal(sent[0].args[0][0].path,'one.webp');
+    client.config.components[0].props.file_count='single';
+    await service.estimateFromImage({name:'two.webp'});
+    assert.equal(sent[1].args.length,1);assert.equal(sent[1].args[0].path,'two.webp');
+    await assert.rejects(service.estimateFromImages([file,file]),/صورة واحدة فقط/);
+    await assert.rejects(service.estimateFromImages([]),/صورة واحدة فقط/);
+    assert.equal(sent.length,2);
+    client.config.components[0].props.file_count='directory';
+    await assert.rejects(service.estimateFromImage(file),/غير متوافق/);
+  } finally {globalThis.uploadClient=oldClient;}
 });

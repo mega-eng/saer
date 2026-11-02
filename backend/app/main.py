@@ -379,7 +379,9 @@ def pricing_options() -> dict[str, Any]:
 
 
 @app.post("/api/recognize")
-async def recognize(file: UploadFile = File(...)) -> dict[str, Any]:
+async def recognize(request: Request, file: UploadFile = File(...)) -> dict[str, Any]:
+    if len((await request.form()).getlist("file")) != 1:
+        raise HTTPException(422, "ارفع صورة واحدة فقط للسيارة")
     path, digest = await _save_upload(file)
     try:
         try:
@@ -391,7 +393,9 @@ async def recognize(file: UploadFile = File(...)) -> dict[str, Any]:
 
 
 @app.post("/api/estimate-image-price")
-async def estimate_image_price(file: UploadFile = File(...)) -> dict[str, Any]:
+async def estimate_image_price(request: Request, file: UploadFile = File(...)) -> dict[str, Any]:
+    if len((await request.form()).getlist("file")) != 1:
+        raise HTTPException(422, "ارفع صورة واحدة فقط للسيارة")
     path, digest = await _save_upload(file)
     try:
         try:
@@ -406,8 +410,8 @@ async def estimate_image_price(file: UploadFile = File(...)) -> dict[str, Any]:
 
 @app.post("/api/estimate-image-price/multiple")
 async def estimate_image_price_multiple(files: list[UploadFile] = File(...)) -> dict[str, Any]:
-    if not 1 <= len(files) <= 8:
-        raise HTTPException(422, "ارفع من صورة واحدة إلى 8 صور للسيارة نفسها")
+    if len(files) != 1:
+        raise HTTPException(422, "ارفع صورة واحدة فقط للسيارة")
     paths: list[Path] = []
     try:
         for upload in files:

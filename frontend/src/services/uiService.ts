@@ -1,3 +1,5 @@
+import { validateImage } from "./imageUpload";
+
 export type Listing = {
   id: string;
   make: string;
@@ -169,6 +171,7 @@ export const uiService = {
     return getJson<MarketData>(`/api/market?${params}`);
   },
   async estimateFromImage(file: File) {
+    validateImage(file);
     if (import.meta.env.VITE_DEMO_MODE === "true") return (await import("./demoService")).estimateFromImage(file);
     const result = await postImage<{price_sar?:number; range_80_sar?:[number,number]; range_90_sar?:[number,number]; notice_ar?:string; notice?:string}>("/api/estimate-image-price", file);
     const price = result.price_sar;
@@ -176,6 +179,7 @@ export const uiService = {
     return { price, lower80: result.range_80_sar?.[0], upper80: result.range_80_sar?.[1], lower90: result.range_90_sar?.[0], upper90: result.range_90_sar?.[1], notice: result.notice_ar || result.notice || "تقدير تجريبي من الصورة." };
   },
   async estimateFromImages(files: File[]) {
+    if (files.length !== 1) throw new Error("ارفع صورة واحدة فقط للسيارة.");
     if (import.meta.env.VITE_DEMO_MODE === "true") return (await import("./demoService")).estimateFromImages(files);
     const body = new FormData();
     files.forEach((file) => body.append("files", file));
@@ -187,6 +191,7 @@ export const uiService = {
     return { price, lower80: result.range_80_sar?.[0], upper80: result.range_80_sar?.[1], lower90: result.range_90_sar?.[0], upper90: result.range_90_sar?.[1], imageCount: result.image_count ?? files.length, notice: result.notice_ar || result.notice || "تقدير تجريبي من الصور." };
   },
   async identifyVehicle(file: File) {
+    validateImage(file);
     if (import.meta.env.VITE_DEMO_MODE === "true") return (await import("./demoService")).identifyVehicle(file);
     const body = new FormData();
     body.append("file", file);

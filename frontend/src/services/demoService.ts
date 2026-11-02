@@ -1,6 +1,7 @@
 import type { DatasetMeta, Filters, Listing, MarketData, MarketFilters } from "./uiService";
 import { Client, handle_file } from "@gradio/client";
 import { resolveApiBaseUrl } from "../config";
+import { validateImage } from "./imageUpload";
 
 type RawListing = Record<string, any> & {
   listing_id: string;
@@ -205,7 +206,8 @@ async function gradioClient(): Promise<Client> {
     clientPromise = Client.connect(url, options).catch((error: unknown) => {
       connectedApiUrl = "";
       clientPromise = undefined;
-      throw error;
+      const detail = error instanceof Error ? error.message : String(error);
+      throw new Error(`تعذر الاتصال بخدمة النماذج. تأكد من تشغيل جلسة Kaggle وصلاحية رابط الخادم، ثم أعد المحاولة. (${detail})`);
     });
   }
   return clientPromise!;
@@ -241,13 +243,25 @@ function priceResult(result: Record<string, any>) {
 }
 
 export async function estimateFromImage(file: File) {
-  return priceResult(await callLive<Record<string, any>>("predict_image", [[handle_file(file)]]));
+  validateImage(file);
+  const client = await gradioClient();
+  const config = client.config;
+  const dependency = config?.dependencies.find(item => item.api_name === "predict_image");
+  const component = config?.components.find(item => item.id === dependency?.inputs[0]);
+  const count = component?.props.file_count;
+  if (component?.type !== "file" || !["single", "multiple"].includes(String(count))) {
+    throw new Error("إعداد مدخل الصورة في خدمة النماذج غير متوافق. تحقق من إصدار الخادم.");
+  }
+  const fileData = handle_file(file);
+  // Outer array: positional arguments. Inner array: the ListFiles parameter only.
+  return priceResult(await callLive<Record<string, any>>("predict_image", [count === "multiple" ? [fileData] : fileData]));
 }
 export async function estimateFromImages(files: File[]) {
-  if (!files.length || files.length > 8) throw new Error("ارفع من صورة واحدة إلى 8 صور للسيارة نفسها.");
-  return priceResult(await callLive<Record<string, any>>("predict_image", [files.map(file => handle_file(file))]));
+  if (files.length !== 1) throw new Error("ارفع صورة واحدة فقط للسيارة.");
+  return estimateFromImage(files[0]);
 }
 export async function identifyVehicle(file: File) {
+  validateImage(file);
   const result = await callLive<Record<string, any>>("identify_vehicle", [handle_file(file)]);
   const predicted = result["الاقتراح_الرئيسي"];
   const alternatives = predicted?.["أفضل_الاحتمالات"] || [];
