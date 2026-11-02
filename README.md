@@ -1,6 +1,6 @@
 <div align="center">
   <img src="frontend/public/ui/saer-logo.png" width="180" alt="Saer logo: a white car and the Arabic name سعّر on a blue background">
-  <h1>Saer | سعّر</h1>
+  <h1>🚗 Saer | سعّر</h1>
   <p><strong>Know the car. Understand the price.</strong></p>
   <p>Estimate car prices, identify vehicles from photos, and explore historical listings.<br>An Arabic-first graduation project built around practical machine learning.</p>
   <p>
@@ -8,11 +8,14 @@
     <img src="https://img.shields.io/badge/Runtime-Python%203.12-143B63?style=flat-square" alt="Model runtime: Python 3.12">
     <img src="https://img.shields.io/badge/Data-Historical-E5AB36?style=flat-square" alt="Data: historical advertisements">
   </p>
-  <h3><a href="https://saer-rmsavg637.pages.dev/">Explore the Live Demo</a></h3>
-  <p><a href="#features">Features</a> · <a href="#quick-start">Quick Start</a> · <a href="#documentation">Documentation</a></p>
+  <p>
+    <a href="https://saer-rmsavg637.pages.dev/?api=https%3A%2F%2Fgigantic-jolliness-stamina.ngrok-free.dev"><img src="https://img.shields.io/badge/Explore_Saer-Live_Demo-087FC4?style=for-the-badge" alt="Open the Saer live demo"></a>
+  </p>
+  <h3><a href="https://saer-rmsavg637.pages.dev/?api=https%3A%2F%2Fgigantic-jolliness-stamina.ngrok-free.dev">🌐 Explore the Live Demo →</a></h3>
+  <p><a href="#features">✨ Features</a> · <a href="#quick-start">🚀 Quick Start</a> · <a href="#team">👥 Team</a> · <a href="#documentation">📚 Documentation</a></p>
 </div>
 
-> **Demo status:** The published site offers the interface and historical data. Model inference has been verified **locally** and requires a separate model server. The deployed site may differ from the latest `main`.
+> 🌐 **Try Saer:** Open the demo above and choose guest access. The link selects the external model service; predictions require its server and tunnel to remain running. Local model verification does not guarantee availability of every live flow. The deployed interface may differ from the latest `main`.
 
 ![Saer home screen with six Arabic service cards and a blue cityscape](docs/assets/home-screen.jpg)
 
@@ -35,20 +38,20 @@ Saer brings vehicle exploration and price estimation into one Arabic, right-to-l
 
 <a name="features"></a>
 
-## Features
+## ✨ Features
 
 | Feature | What you can do | Data / runtime |
 |---|---|---|
-| **Specification-Based Price Estimation** | Enter vehicle details to estimate an asking price in SAR. | Local model service |
-| **Image-Based Price Estimation** | Upload a car photo for an experimental price estimate and prediction ranges. | Local model service |
-| **Budget-Based Recommendations** | Find up to five distinct model choices within a budget. | Historical listings |
-| **Car Comparison** | Compare recorded vehicle attributes and advertised prices side by side. | Historical listings |
-| **Market Analysis** | Explore descriptive price summaries by make, model, year, and city. | Historical listings |
-| **Historical Listings Explorer** | Search and filter the project’s saved advertisements. | Historical listings |
+| **💰 Specification-Based Price Estimation** | Enter vehicle details to estimate an asking price in SAR. | Local model service |
+| **📷 Image-Based Price Estimation** | Upload a car photo for an experimental price estimate and prediction ranges. | Local model service |
+| **🎯 Budget-Based Recommendations** | Find up to five distinct model choices within a budget. | Historical listings |
+| **⚖️ Car Comparison** | Compare recorded vehicle attributes and advertised prices side by side. | Historical listings |
+| **📊 Market Analysis** | Explore descriptive price summaries by make, model, year, and city. | Historical listings |
+| **🔎 Historical Listings Explorer** | Search and filter the project’s saved advertisements. | Historical listings |
 
 **Two photo paths, two different purposes.** Vehicle identification suggests a make and model for the specification-based flow. The user confirms that suggestion and completes fields such as year and mileage before pricing. Direct image-to-price estimation is a separate model; it does not infer mileage or mechanical condition.
 
-## Models & data
+## 🧠 Models & Data
 
 The table below describes the **saved runtime artifacts**, rather than the alternative architectures proposed in early planning documents.
 
@@ -64,7 +67,7 @@ The table below describes the **saved runtime artifacts**, rather than the alter
 
 Evaluation is retrospective and does not establish external-market accuracy. A sample prediction is not an accuracy metric, and an identity score is not calibrated confidence. See the [image-price evaluation and provenance](models/image_price_current.json), [identity selection and caveats](models/identity_current.json), and [tabular validation metadata](models/improvement_20261021T093545513846/price/selected.json).
 
-## How it fits together
+## 🏗️ How It Fits Together
 
 | Layer | Technology |
 |---|---|
@@ -77,23 +80,23 @@ Evaluation is retrospective and does not establish external-market accuracy. A s
 ```mermaid
 flowchart TB
     subgraph Published["Published static demo"]
-        Visitor["Visitor's browser"] --> Pages["Cloudflare Pages<br/>UI + historical data"]
+        Visitor["Visitor's browser"] --> Pages["Cloudflare Pages — UI + historical data"]
     end
     subgraph Local["Locally verified runtime"]
-        UI["Local React interface"] --> API["Python service<br/>Gradio / FastAPI"]
-        API --> Specs["Specifications<br/>to price"]
-        API --> Identity["Photo to<br/>make / model"]
-        API --> ImagePrice["Photo<br/>to price"]
+        UI["Local React interface"] --> API["Python service — Gradio / FastAPI"]
+        API --> Specs["Specifications — to price"]
+        API --> Identity["Photo to — make / model"]
+        API --> ImagePrice["Photo — to price"]
     end
     %% Invisible layout link, not a service connection.
     Pages ~~~ UI
 ```
 
-Cloudflare serves the static demo; it does **not** run Python or the models. Demo-mode UI inference uses Gradio. REST endpoints are also available for direct verification. No publicly connected inference service is currently verified.
+Cloudflare serves the static demo; it does **not** run Python or the models. Demo-mode UI inference uses Gradio. REST endpoints are also available for direct verification. The live-demo link supplies an external model-service URL through `?api=`. Its availability depends on the running model server and tunnel; this README update does not claim a new end-to-end inference test.
 
 <a name="quick-start"></a>
 
-## Quick Start
+## 🚀 Quick Start
 
 ### 1. Explore the interface locally
 
@@ -133,13 +136,15 @@ The first encoder restore needs internet access and disk space. After restoratio
 
 **[Full setup guide →](docs/SETUP.md)** includes environment checks, exact CPU versions, REST startup, configuration, fresh-result verification, build commands, and backup restoration. The tested platform is Windows x64 with 16 GB RAM; other platforms and GPU configurations have not been verified with these locks.
 
-## Team
+<a name="team"></a>
+
+## 👥 The Team
 
 - ريان القحطاني
 - محمد ال حمود
 - عبد الرحمن الاسمري
 
-## Repository guide
+## 🗂️ Repository Guide
 
 | Path | Purpose |
 |---|---|
@@ -152,7 +157,7 @@ The first encoder restore needs internet access and disk space. After restoratio
 
 <a name="documentation"></a>
 
-## Documentation
+## 📚 Documentation
 
 | Start here | Details |
 |---|---|
