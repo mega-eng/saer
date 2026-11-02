@@ -895,3 +895,7 @@ button.site-account {padding:0;border:0;background:transparent;font:inherit;curs
 .hamoud-site-nav .hamoud-brand-link{display:flex;align-items:center}.hamoud-site-nav .hamoud-brand-link img{display:block;width:116px;height:58px;object-fit:fill;border-radius:9px}
 @media(max-width:720px){.hamoud-site-nav{gap:4px;padding:6px;font-size:11px}.hamoud-site-nav .hamoud-brand-link{width:100%;margin:0;justify-content:center}.hamoud-site-nav .hamoud-brand-link img{width:100px;height:50px}}
 @media(max-width:760px){.login-screen{padding:40vw 16px 32px;justify-content:center;min-height:100dvh;}.login-panel{width:100%;max-width:420px;padding:24px;}.login-scene{min-width:760px;width:100%;left:50%;transform:translateX(-50%);opacity:.8;}.login-panel input:not([type=checkbox]){font-size:16px;}.login-options{font-size:13px;}}
+
+/* Keep the complete login artwork and its guest button inside the viewport. */
+.login-screen.login-screen-fit {position:fixed;inset:0;width:100%;height:100dvh;min-height:0;padding:16px;box-sizing:border-box;align-items:center;justify-content:center;overflow:auto;}
+.login-screen-fit .login-reference-stage {width:min(calc(100vw - 32px),calc((100dvh - 32px) * 1.77683));height:auto;aspect-ratio:1672/941;flex:none;}

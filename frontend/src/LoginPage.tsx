@@ -17,7 +17,7 @@ export default function LoginPage({navigate,header}:{navigate:(path:string)=>voi
   };
 
   return (
-    <main className="login-screen" dir="rtl" aria-label={APP_NAME}>
+    <main className="login-screen login-screen-fit" dir="rtl" aria-label={APP_NAME}>
       {header}
       <div className="login-reference-stage">
         <img className="login-reference-image" src="/ui/login/login-final-market.png" alt={`واجهة تسجيل الدخول إلى ${APP_NAME}`} draggable={false}/>
